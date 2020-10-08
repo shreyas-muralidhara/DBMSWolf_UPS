@@ -1,9 +1,9 @@
 # University Parking System - WolfUPS
 Team Members:
-	* Shreyas Muralidhara - schikkb
-	* Niranjan Pandeshwar - nrpandes
-	* Prathamesh Pandit - pppandi2
-	* Sreemoyee ray - sray9
+* Shreyas Muralidhara - schikkb
+* Niranjan Pandeshwar - nrpandes
+* Prathamesh Pandit - pppandi2
+* Sreemoyee ray - sray9
 
 ### Project Description
 *The goal of this project is for you to develop a database application to help University Parking Services (UPS) manage the campus parking lots and its users*. 
