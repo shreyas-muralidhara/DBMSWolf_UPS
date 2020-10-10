@@ -1,0 +1,5 @@
+Comments: 
+1. Add designation attribute to Parkinglot.
+2. We are using general approach for non visitor hierarchy. Can we convert it to  null approach?
+4. TABLE REL_VISITORZONEACCESS seems superfluous. Does not capture any additional information
+5. Don't need PERMITNO in Vehicle table.
