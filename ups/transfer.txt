@@ -1,0 +1,8 @@
+from local to remote:
+scp ups pppandi2@remote.eos.ncsu.edu:/afs/unity.ncsu.edu/users/p/pppandi2/projects/dbms/project-1
+scp maven pppandi2@remote.eos.ncsu.edu:/afs/unity.ncsu.edu/users/p/pppandi2/projects/dbms
+
+setup maven remotely
+export M2_HOME=~/projects/dbms/maven/apache-maven-3.6.3/
+export M2=~/projects/dbms/maven/apache-maven-3.6.3/bin
+export PATH=$M2:$PATH
