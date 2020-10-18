@@ -1,19 +1,29 @@
-package wolfUPS.UserInterface;
+package WolfUPS.UserInterface;
+
+import java.sql.*;
+import WolfUPS.connection.InitializeConnection;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Main {
-    public static void main(String[] args) throws Exception {
+public class App 
+{
+    public static void main( String[] args )
+    {
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+
         StringBuilder sb = null;
-        System.out.println("Wolf University Parking Services Application");
+        
 
         while(true){
             sb = new StringBuilder();
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             
-            sb.append("Please enter the number from the below menu options:\n");
+            System.out.println("\n\nWolf University Parking Services Application");
+            sb.append("Please enter the number from the MAIN MENU options:\n");
             sb.append("1. UPS Admin\n");
             sb.append("2. Employee\n");
             sb.append("3. Student\n");
@@ -26,8 +36,7 @@ public class Main {
                 String choice = reader.readLine();
                 switch (Integer.parseInt(choice)) {
                     case 1:
-                        //AdminUI.adminUI(reader);
-                        System.out.println("Admin Menu");
+                        AdminUI.adminUI(reader);
                         break;
                     case 2:
                         //EmployeeUI.employeeUI(reader);
@@ -50,14 +59,17 @@ public class Main {
                         break;
                 }
             }
-            catch (IOException e) {
+            catch (IOException e){
                 System.out.println("IO Exception occurred.");
                 e.printStackTrace();
-            }
-            catch (Exception e) {
+            } catch (Exception e){
                 e.printStackTrace();
             }
+            finally {
+                InitializeConnection.close(rs);;
+                InitializeConnection.close(stmt);
+                InitializeConnection.close(conn);;
+            } 
         }
-        
     }
 }
