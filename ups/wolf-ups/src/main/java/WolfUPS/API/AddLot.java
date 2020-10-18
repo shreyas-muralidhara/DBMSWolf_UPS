@@ -35,81 +35,123 @@ public class AddLot {
     
         
         /* Insert the new Parking lot*/
-        try {
-            String sql = "INSERT INTO PARKINGLOT VALUES(?, ?)";
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, Lot_name);
-            ps.setString(2, lot_addr);
-            rs = ps.executeQuery();
+        try{
+            /* disable the auto commit*/
+            conn.setAutoCommit(false);
+            /* Seting the transaction Managment variables to capture the failure*/
+            boolean trans1 = false,trans2 = false,trans3 = false;
 
-            if (rs != null) {
-                System.out.println("Parking lot created successfully");
-            } else {
-                System.out.println("Unable to add the Parking lot");
-            }
-        }
-        catch (SQLException e){
-            System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
-            e.printStackTrace();
-            return;
-        }
-
-
-        /* Insert the Specified number of spaces into the parking lot*/
-        try {
-            Boolean flag = false;
-            int id = 0;
-            for(id = startid; id < (startid+space_cnt); id++)
-            {
-                String sql = "INSERT INTO SPACE VALUES(?, ?, ?, ?, ?)";
+            try {
+                String sql = "INSERT INTO PARKINGLOT VALUES(?, ?)";
                 ps = conn.prepareStatement(sql);
-                ps.setInt(1, id);
-                ps.setString(2, "regular");
-                ps.setString(3, Lot_name);
-                ps.setInt(4, 1);
-
-                if (zone_desig.charAt(0)=='V')
-                    ps.setInt(5, 1);
-                else
-                    ps.setInt(5, 0);
+                ps.setString(1, Lot_name);
+                ps.setString(2, lot_addr);
                 rs = ps.executeQuery();
 
-                if (rs == null) {
-                    System.out.println("Unable to add the Space-" + id +" to the lot " + Lot_name);
-                    flag = true;
+                if (rs != null) {
+                    System.out.println("Parking lot created successfully");
+                    trans1 = true;
+                } else {
+                    System.out.println("Unable to add the Parking lot");
+                    trans1 = false;
                 }
-            }
-            if(!flag)
-                System.out.println("Spaces "+ startid + " - "+ id +" added to the lot.");
-        }       
-        catch (SQLException e){
-            System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
-            e.printStackTrace();
-            return;
-        }
-        
-        /* Allocate the zone to that lot*/
-        try {
-            
-            String sql = "INSERT INTO REL_ALLOCATED VALUES(?, ?)";
-            ps = conn.prepareStatement(sql);
-            ps.setString(1, zone_desig);
-            ps.setString(2, Lot_name);
                 
-            rs = ps.executeQuery();
+            }
+            catch (SQLException e){
+                System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
+                e.printStackTrace();
+                conn.rollback();
+                trans1 = false;
+                return;
+            }
 
-            if (rs != null) 
-                System.out.println("Allocated Zone to Parking lot successfully");
-            else
-                System.out.println("Unable to allocate zone to the Parking lot");
+
+            /* Insert the Specified number of spaces into the parking lot*/
+            try {
+                Boolean flag = false;
+                int id = 0;
+                for(id = startid; id < (startid+space_cnt); id++)
+                {
+                    String sql = "INSERT INTO SPACE VALUES(?, ?, ?, ?, ?)";
+                    ps = conn.prepareStatement(sql);
+                    ps.setInt(1, id);
+                    ps.setString(2, "regular");
+                    ps.setString(3, Lot_name);
+                    ps.setInt(4, 1);
+
+                    if (zone_desig.charAt(0)=='V')
+                        ps.setInt(5, 1);
+                    else
+                        ps.setInt(5, 0);
+                    rs = ps.executeQuery();
+
+                    if (rs == null) {
+                        System.out.println("Unable to add the Space-" + id +" to the lot " + Lot_name);
+                        flag = true;
+                        trans2 = false;
+                    }
+                }
+                if(!flag){
+                    System.out.println("Spaces "+ startid + " - "+ id +" added to the lot.");
+                    trans2 = true;
+                }
+
+            }       
+            catch (SQLException e){
+                System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
+                e.printStackTrace();
+                conn.rollback();
+                trans2 = false;
+                return;
+            }
             
-        }
-        catch (SQLException e){
+            /* Allocate the zone to that lot*/
+            try {
+                
+                String sql = "INSERT INTO REL_ALLOCATED VALUES(?, ?)";
+                ps = conn.prepareStatement(sql);
+                ps.setString(1, zone_desig);
+                ps.setString(2, Lot_name);
+                    
+                rs = ps.executeQuery();
+
+                if (rs != null) {
+                    System.out.println("Allocated Zone to Parking lot successfully");
+                    trans3 = true;
+                }
+                else{
+                    System.out.println("Unable to allocate zone to the Parking lot");
+                    trans3 = false;
+                }
+                
+            }
+            catch (SQLException e){
+                System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
+                e.printStackTrace();
+                conn.rollback();
+                trans3 = false;
+                return;
+            }
+
+            /* Transaction management check*/
+            if (trans1 && trans2 && trans3){
+                conn.commit();
+                System.out.println("Transaction Successful!");
+            }
+            else{
+                conn.rollback();
+                System.out.println("Transaction Failed");
+            }
+            conn.setAutoCommit(true);
+            
+        }catch (SQLException e) {
             System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
             e.printStackTrace();
-            return;
+            conn.rollback();
         }
         finally {
+            if(conn!=null)
+                conn.setAutoCommit(true);
             InitializeConnection.close(rs);;
             InitializeConnection.close(st);
             InitializeConnection.close(conn);;
