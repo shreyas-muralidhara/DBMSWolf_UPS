@@ -17,7 +17,7 @@ public class AddLot {
         String Lot_name, lot_addr, zone_desig;
         Integer startid, space_cnt;
 
-        // Prompt to enter the Admin University ID, authenticate the user as Admin.
+        // Prompt admin to enter various details related to the lot.
         System.out.println("Please enter the parking lot ID");
         Lot_name = reader.readLine();
         System.out.println("Please enter the address of the lot");
