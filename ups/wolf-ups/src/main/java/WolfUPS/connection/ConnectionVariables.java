@@ -1,7 +1,7 @@
-/* Method to initialize the connection variables*/
-package wolfUPS.connection;
+package WolfUPS.connection;
 
-public class DbConnVariables {
+public class ConnectionVariables {
+    
     public static String getJDBCUrl(){
         return "jdbc:oracle:thin:@orca.csc.ncsu.edu:1521:orcl01";
     }    
