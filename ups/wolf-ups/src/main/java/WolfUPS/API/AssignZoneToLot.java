@@ -21,14 +21,22 @@ public class AssignZoneToLot {
         System.out.println("Please enter the parking lot name for which zone has to be allotted");
         Lot_name = reader.readLine();
 
-        // Check whether the parking lot exists
-        String parklot_check = "Select * from PARKINGLOT where NAME = \'" + Lot_name + "\'";
-        ResultSet rs1 = st.executeQuery(parklot_check);
 
-        if(!rs1.next()){
+        try{
+            String parklot_check = "Select * from PARKINGLOT where NAME = \'" + Lot_name + "\'";
+            ResultSet rs1 = st.executeQuery(parklot_check);
             
-            System.out.println("Entered lot name is not a parking lot\n");
-            return ;
+
+            if(!rs1.next()){
+                
+                System.out.println("Entered lot name is not a parking lot\n");
+                return ;
+            }
+        }
+        catch (SQLException e){
+            System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
+            e.printStackTrace();
+            return;
         }
 
         //Prompt to enter zone ID to be alloted
@@ -42,6 +50,12 @@ public class AssignZoneToLot {
         zone_desig = zone_desig.length() < 2 ? zone_desig : zone_desig.substring(0, 2);
         
         try{
+            /* disable the auto commit*/
+            conn.setAutoCommit(false);
+            /* Seting the transaction Managment variables to capture the failure*/
+            boolean trans1 = false,trans2 = false,trans3 = false,trans4 = false;
+
+
             //Get the max SpaceID
             String space_id = "SELECT MAX(SPACEID) AS X from SPACE where LOTNAME = \'" + Lot_name + "\'";
             ResultSet rs4 = st.executeQuery(space_id);
@@ -63,20 +77,55 @@ public class AssignZoneToLot {
                 String zone_check = "Select * from REL_ALLOCATED where NAME = \'" + Lot_name + "\' AND ZONEID=\'V\'";
                 ResultSet rs2 = st.executeQuery(zone_check);
                 if(!rs2.next()){
-                    
-                    //If not present, insert the zone ID in REL_ALLOCATED table
-                    String sql = "INSERT INTO REL_ALLOCATED VALUES(?, ?)";
-                    ps = conn.prepareStatement(sql);
-                    ps.setString(1, zone_desig);
-                    ps.setString(2, Lot_name);
-                    
-                    ResultSet rs3 = ps.executeQuery();
+                    try{
+                        //If not present, insert the zone ID in REL_ALLOCATED table
+                        String sql = "INSERT INTO REL_ALLOCATED VALUES(?, ?)";
+                        ps = conn.prepareStatement(sql);
+                        ps.setString(1, zone_desig);
+                        ps.setString(2, Lot_name);
+                        
+                        ResultSet rs3 = ps.executeQuery();
+                        if (!rs3.next()){
+                            System.out.println("Zone could not be inserted");
+                            trans1 = false;
+                        }
+                        else{
+                            System.out.println("Zone successfully assigned to the lot");
+                            trans1 = true;
+                        }
+                    }
+                    catch (SQLException e){
+                        System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
+                        e.printStackTrace();
+                        conn.rollback();
+                        trans1 = false;
+                        return;
+                    }
                     
                 }
                 
-                //Update the ISVISITOR attribute in SPACE table;
-                String assign_vis = "UPDATE SPACE SET ISVISITOR = 1 where SPACEID BETWEEN (" + mspace + "-" + space_cnt + "+" + 1 + ") AND " + mspace;
-                ResultSet rs5 = st.executeQuery(assign_vis); 
+                try{
+                    //Update the ISVISITOR attribute in SPACE table;
+                    String assign_vis = "UPDATE SPACE SET ISVISITOR = 1 where SPACEID BETWEEN (" + mspace + "-" + space_cnt + "+" + 1 + ") AND " + mspace;
+                    ResultSet rs5 = st.executeQuery(assign_vis); 
+
+                    if (!rs5.next()){
+                        System.out.println("ISVISITOR update failed");
+                        trans2 = false;
+                    }
+                    else{
+                        System.out.println("ISVISITOR update successful");
+                        trans2 = true;
+                    }
+                }
+
+                catch (SQLException e){
+                    System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
+                    e.printStackTrace();
+                    conn.rollback();
+                    trans2 = false;
+                    return;
+                }
 
             
             }
@@ -88,10 +137,30 @@ public class AssignZoneToLot {
                 if(rs6.next()){
                     System.out.println("The parking lot also has visitor zones. Please enter the number of spaces to be alloted to visitor");
                     space_cnt= Integer.parseInt(reader.readLine());
-                    String assign_vis1 = "UPDATE SPACE SET ISVISITOR = 1 where SPACEID BETWEEN (" + mspace + "-" + space_cnt + "+" + 1 + ") AND " + mspace;
-                    ResultSet rs8 = st.executeQuery(assign_vis1);
-                    String assign_vis2 = "UPDATE SPACE SET ISVISITOR = 0 where SPACEID BETWEEN " + minspace + " AND (" + mspace + "-" + space_cnt + ")";
-                    ResultSet rs9 = st.executeQuery(assign_vis2);
+
+                    try{
+                        String assign_vis1 = "UPDATE SPACE SET ISVISITOR = 1 where SPACEID BETWEEN (" + mspace + "-" + space_cnt + "+" + 1 + ") AND " + mspace;
+                        ResultSet rs8 = st.executeQuery(assign_vis1);
+                        String assign_vis2 = "UPDATE SPACE SET ISVISITOR = 0 where SPACEID BETWEEN " + minspace + " AND (" + mspace + "-" + space_cnt + ")";
+                        ResultSet rs9 = st.executeQuery(assign_vis2);
+                        /*
+                        if (!rs8.next()){
+                            System.out.println("Setting visitor spaces failed");
+                            trans3 = false;
+                        }
+                        else{
+                            System.out.println("Setting visitor spaces successful");
+                            trans3 = true;
+                        }
+                        */
+                    }
+                    catch (SQLException e){
+                        System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
+                        e.printStackTrace();
+                        conn.rollback();
+                        trans3 = false;
+                        return;
+                    }
 
                 
                 }
@@ -100,28 +169,63 @@ public class AssignZoneToLot {
                 String zone_check2 = "Select * from REL_ALLOCATED where NAME = \'" + Lot_name + "\' AND ZONEID=\'" + zone_desig + "\'";
                 ResultSet rs10 = st.executeQuery(zone_check2);
                 if(!rs10.next()){
-                    String sql = "INSERT INTO REL_ALLOCATED VALUES(?, ?)";
-                    ps = conn.prepareStatement(sql);
-                    ps.setString(1, zone_desig);
-                    ps.setString(2, Lot_name);
-                    
-                    ResultSet rs11 = ps.executeQuery();
+                    try{
+                        String sql = "INSERT INTO REL_ALLOCATED VALUES(?, ?)";
+                        ps = conn.prepareStatement(sql);
+                        ps.setString(1, zone_desig);
+                        ps.setString(2, Lot_name);
+                        
+                        ResultSet rs11 = ps.executeQuery();
 
+                        if (!rs11.next()){
+                            System.out.println("Zone could not be inserted");
+                            trans4 = false;
+                        }
+                        else{
+                            System.out.println("Zone successfully assigned to the lot");
+                            trans4 = true;
+                        }
+
+                    }
+
+                    catch (SQLException e){
+                        System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
+                        e.printStackTrace();
+                        conn.rollback();
+                        trans4 = false;
+                        return;
+                    }
                 
             }
+
         }
+
+        /* Transaction management check*/
+        if ((trans1 && trans2) || (trans4)){
+            conn.commit();
+            System.out.println("Transaction Successful!");
+        }
+        else{
+            conn.rollback();
+            System.out.println("Transaction Failed");
+        }
+        conn.setAutoCommit(true);
 
         }
         catch (SQLException e){
             System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
             e.printStackTrace();
+            conn.rollback();
             return;
         }
         finally {
+            if(conn!=null)
+                conn.setAutoCommit(true);
             InitializeConnection.close(rs);;
             InitializeConnection.close(st);
             InitializeConnection.close(conn);;
 
     }
+
 }
 }
