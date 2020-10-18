@@ -81,10 +81,13 @@ public class AdminUI {
                     AssignTypeToSpace.assigntypetospace(reader,conn);
                     break;
                 case 4:
+                    AssignPermit.assignpermit(reader,conn);
+                    break;
+                case 5:
                     //CheckVValidParking.checkvvalidparking(reader);
                     System.out.println("Check Visitor Valid Parking");
                     break;
-                case 5:
+                case 6:
                     //CheckNVValidParking.checknvvalidparking(reader);
                     System.out.println("Check Non-Visitor Valid Parking");
                     break;
