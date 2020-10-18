@@ -73,11 +73,12 @@ public class AdminUI {
                     break;
                 case 2:
                     //AssignZoneToLot.assignzonetolot(reader);
-                    System.out.println("Assign Zone To Lot");
+                    AssignZoneToLot.assignzonetolot(reader,conn);
                     break;
                 case 3:
                     //AssignTypeToSpace.assigntypetospace(reader);
                     System.out.println("Assign Type To Space");
+                    AssignTypeToSpace.assigntypetospace(reader,conn);
                     break;
                 case 4:
                     //CheckVValidParking.checkvvalidparking(reader);
