@@ -47,7 +47,7 @@ public class App
                         System.out.println("Student Menu");
                         break;
                     case 4:
-                        //VisitorUI.visitorUI(reader);
+                        VisitorUI.visitorui(reader);
                         System.out.println("Visitor Menu");
                         break;
                     case 5:
