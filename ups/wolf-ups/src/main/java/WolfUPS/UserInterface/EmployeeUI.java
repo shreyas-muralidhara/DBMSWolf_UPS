@@ -21,35 +21,9 @@ public class EmployeeUI {
         ResultSet rs = st.executeQuery("Select * from EMPLOYEE where UNIVID = \'" + emp_id + "\' AND ISADMIN=0");
         
         if(!rs.next()){
-            
-            System.out.println("Not a valid Employee Univid\n");
-
-            sb.append("Would you like to try again:\n");
-            sb.append("1. Re-Enter Employee univid\n");
-            sb.append("otherwise back to Main Menu.");
-            System.out.println(sb.toString());
-
-            try {
-                String choice = reader.readLine();
-                switch (Integer.parseInt(choice)) {
-                    case 1:
-                        System.out.println("Please enter the Employee University ID:");
-                        emp_id = reader.readLine();
-                        rs = st.executeQuery("Select * from EMPLOYEE where UNIVID = \'" + emp_id + "\' AND ISADMIN=0");
-
-                        if(!rs.next()){
-                            System.out.println("Not a valid Employee University ID.\nSwitching back to MAIN MENU");
-                            return ;
-                        }    
-                        break;
-                    default:
-                        return ;
-                }
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
-        }
+            System.out.println("Not a valid Employee University ID.\nSwitching back to MAIN MENU");
+            return ;
+        }    
         StringBuilder sb1 = null;
         sb1 = new StringBuilder();
             
