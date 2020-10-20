@@ -46,12 +46,7 @@ public class App
                         System.out.println("Student Menu");
                         break;
                     case 4:
-<<<<<<< Updated upstream
                         VisitorUI.visitorui(reader);
-=======
-                        VisitorUI.visitorUI(reader);
->>>>>>> Stashed changes
-                        System.out.println("Visitor Menu");
                         break;
                     case 5:
                         //DemoQueryUI.demoqueryUI(reader);

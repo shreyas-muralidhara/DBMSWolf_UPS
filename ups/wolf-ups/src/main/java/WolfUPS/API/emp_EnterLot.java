@@ -379,6 +379,11 @@ public class emp_EnterLot {
                 +"ORDER BY S.LOTNAME";
         rs = st.executeQuery(sql);
 
+        if(!rs.next()){
+            System.out.println(" No Lots available to park, as all are full.\nReturning to the MAIN menu");
+            return;
+        }
+
         System.out.println("Below are the list of Lots available to park");
         while(rs.next()){
             emp_zones.add(rs.getString("LOTNAME"));
