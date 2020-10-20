@@ -1,5 +1,6 @@
 /*Insert values in ParkingLot*/
 
+delete from parkinglot;
 insert into parkinglot values ('Freedom Lot', '2105 Daniel Allen St, NC 27505');
 insert into parkinglot values ('Premiere Lot', '2108 McKent St, NC 27507');
 insert into parkinglot values ('Justice Lot', '2704 Ben Clark St, NC 26701');
@@ -7,6 +8,7 @@ insert into parkinglot values ('Justice Lot', '2704 Ben Clark St, NC 26701');
 
 /*Insert values into Zone table*/
 
+delete from zone;
 insert into zone values ('A');
 insert into zone values ('B');
 insert into zone values ('C');
@@ -22,6 +24,7 @@ insert into zone values ('V');
 
 /*Insert values into rel_allocated table*/
 
+delete from rel_allocated;
 insert into rel_allocated values  ('A','Freedom Lot');
 insert into rel_allocated values  ('B','Freedom Lot');
 insert into rel_allocated values  ('C','Freedom Lot');
@@ -42,6 +45,7 @@ insert into rel_allocated values  ('DS','Justice Lot');
 insert into rel_allocated values  ('V','Justice Lot');
 
 /*Insert values into space table*/
+delete from space;
 insert into space(spaceid,lotname,isavailable,isvisitor) values ('s1','Freedom Lot',1,0);
 insert into space(spaceid,lotname,isavailable,isvisitor) values ('s2','Freedom Lot',1,0);
 insert into space(spaceid,lotname,isavailable,isvisitor) values ('s3','Freedom Lot',1,0);
@@ -542,28 +546,123 @@ insert into space(spaceid,lotname,isavailable,isvisitor) values ('s147','Justice
 insert into space(spaceid,lotname,isavailable,isvisitor) values ('s148','Justice Lot',1,0);
 insert into space(spaceid,lotname,isavailable,isvisitor) values ('s149','Justice Lot',1,0);
 insert into space(spaceid,lotname,isavailable,isvisitor) values ('s150','Justice Lot',1,0);
-insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values ('s151','handicapped','Justice Lot',1,0);
-insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values ('s152','handicapped','Justice Lot',1,0);
-insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values ('s153','handicapped','Justice Lot',1,0);
-insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values ('s154','handicapped','Justice Lot',1,0);
-insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values ('s155','handicapped','Justice Lot',1,0);
-insert into space(spaceid,lotname,isavailable,isvisitor) values ('s156','Justice Lot',1,0);
-insert into space(spaceid,lotname,isavailable,isvisitor) values ('s157','Justice Lot',1,0);
-insert into space(spaceid,lotname,isavailable,isvisitor) values ('s158','Justice Lot',1,0);
-insert into space(spaceid,lotname,isavailable,isvisitor) values ('s159','Justice Lot',1,0);
-insert into space(spaceid,lotname,isavailable,isvisitor) values ('s160','Justice Lot',1,0);
-insert into space(spaceid,lotname,isavailable,isvisitor) values ('s161','Justice Lot',1,0);
-insert into space(spaceid,lotname,isavailable,isvisitor) values ('s162','Justice Lot',1,0);
-insert into space(spaceid,lotname,isavailable,isvisitor) values ('s163','Justice Lot',1,0);
-insert into space(spaceid,lotname,isavailable,isvisitor) values ('s164','Justice Lot',1,0);
-insert into space(spaceid,lotname,isavailable,isvisitor) values ('s165','Justice Lot',1,0);
-insert into space(spaceid,lotname,isavailable,isvisitor) values ('s166','Justice Lot',1,0);
-insert into space(spaceid,lotname,isavailable,isvisitor) values ('s167','Justice Lot',1,0);
-insert into space(spaceid,lotname,isavailable,isvisitor) values ('s168','Justice Lot',1,0);
-insert into space(spaceid,lotname,isavailable,isvisitor) values ('s169','Justice Lot',1,0);
-insert into space(spaceid,lotname,isavailable,isvisitor) values ('s170','Justice Lot',1,0);
-insert into space(spaceid,lotname,isavailable,isvisitor) values ('s171','Justice Lot',1,0);
-insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values ('s172','electric','Justice Lot',1,0);
-insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values ('s173','electric','Justice Lot',1,0);
-insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values ('s174','electric','Justice Lot',1,0);
-insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values ('s175','electric','Justice Lot',1,0);
+insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values ('s151','handicapped','Justice Lot',1,1);
+insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values ('s152','handicapped','Justice Lot',1,1);
+insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values ('s153','handicapped','Justice Lot',1,1);
+insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values ('s154','handicapped','Justice Lot',1,1);
+insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values ('s155','handicapped','Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values ('s156','Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values ('s157','Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values ('s158','Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values ('s159','Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values ('s160','Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values ('s161','Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values ('s162','Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values ('s163','Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values ('s164','Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values ('s165','Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values ('s166','Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values ('s167','Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values ('s168','Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values ('s169','Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values ('s170','Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values ('s171','Justice Lot',1,1);
+insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values ('s172','electric','Justice Lot',1,1);
+insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values ('s173','electric','Justice Lot',1,1);
+insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values ('s174','electric','Justice Lot',1,1);
+insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values ('s175','electric','Justice Lot',1,1);
+
+/*insert into nonvisitor*/
+delete from nonvisitor;
+insert into nonvisitor (univid, phoneno) values ('1007999','9900544565');
+insert into nonvisitor (univid, phoneno) values ('1006003','9900544566');
+insert into nonvisitor (univid, phoneno) values ('1006020','9900544567');
+insert into nonvisitor (univid, phoneno) values ('1006135','9900544568');
+insert into nonvisitor (univid, phoneno) values ('1006022','9900544569');
+
+
+/*insert into student*/
+delete from student;
+insert into student (univid) values ('1006003');
+insert into student (univid) values ('1006135');
+
+
+/*insert into employee*/
+delete from employee;
+insert into employee (univid,isadmin) values ('1000001',1);
+insert into employee (univid,isadmin) values ('1007999',1);
+insert into employee (univid,isadmin) values ('1006020',0);
+insert into employee (univid,isadmin) values ('1006022',0);
+
+/*Insert into Permit */
+delete from permit;
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20V0001A','V',to_date('8/12/2020','MM/DD/YYYY'),'CDF5731','regular');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20V0012B','V',to_date('8/14/2020','MM/DD/YYYY'),'TRK1093','regular');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20V0015J','V',to_date('8/17/2020','MM/DD/YYYY'),'UGY9123','handicapped');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20V0021L','V',to_date('8/17/2020','MM/DD/YYYY'),'AKL1732','electric');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20V0026P','V',to_date('8/19/2020','MM/DD/YYYY'),'UWA1118','handicapped');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20V0025B','V',to_date('8/21/2020','MM/DD/YYYY'),'TRK1093','regular');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20B0001B','B',to_date('8/10/2020','MM/DD/YYYY'),'VTZ87543','electric');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20CS001C','CS',to_date('8/10/2020','MM/DD/YYYY'),'UGB9020','handicapped');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20D0021D','D',to_date('8/10/2020','MM/DD/YYYY'),'TIR3487','regular');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20AS016S','AS',to_date('8/10/2020','MM/DD/YYYY'),'NEV9889','regular');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20A0052A','A',to_date('8/10/2020','MM/DD/YYYY'),'KTP2003','regular');
+
+
+/*Insert into VISITORPERMIT */
+delete from visitorpermit;
+insert into visitorpermit(permitno, lotname, starttime, expiretime, expiredate, spaceno,phoneno) values('20V0001A','Premiere Lot',to_timestamp('2:00 PM','HH.MI PM'),to_timestamp('4:00 PM','HH.MI PM'),to_date('8/12/2020','MM/DD/YYYY'),200,9900544560);
+insert into visitorpermit(permitno, lotname, starttime, expiretime, expiredate, spaceno,phoneno) values('20V0012B','Justice Lot',to_timestamp( '11:00 AM' ,'HH.MI AM') ,to_timestamp( '2:00 PM','HH.MI PM'),to_date('8/14/2020','MM/DD/YYYY'),160,9900544561);
+insert into visitorpermit(permitno, lotname, starttime, expiretime, expiredate, spaceno,phoneno) values('20V0015J','Justice Lot',to_timestamp( '10:10 AM','HH.MI AM'), to_timestamp( '12:10 PM','HH.MI PM'),to_date('8/17/2020','MM/DD/YYYY'),151,9900544562);
+insert into visitorpermit(permitno, lotname, starttime, expiretime, expiredate, spaceno,phoneno) values('20V0021L','Justice Lot',to_timestamp( '11:45 AM','HH.MI AM'),to_timestamp( '12:45 PM','HH.MI PM'),to_date('8/17/2020','MM/DD/YYYY'),173,9900544563);
+insert into visitorpermit(permitno, lotname, starttime, expiretime, expiredate, spaceno,phoneno) values('20V0026P','Justice Lot',to_timestamp( '2:50 PM' ,'HH.MI PM'),to_timestamp( '4:50 PM','HH.MI PM'),to_date('8/19/2020','MM/DD/YYYY'),153,9900544564);
+insert into visitorpermit(permitno, lotname, starttime, expiretime, expiredate, spaceno,phoneno) values('20V0025B','Premiere Lot',to_timestamp( '9:30 AM','HH.MI AM'),to_timestamp( '1:30 PM','HH.MI PM'),	to_date('9/21/2020','MM/DD/YYYY'),200,9900544565);
+
+/*Insert into REL_VISITORZONEACCESS */
+delete from REL_VISITORZONEACCESS;
+insert into REL_VISITORZONEACCESS(permitno,zoneid) values ('20V0001A','V');
+insert into REL_VISITORZONEACCESS(permitno,zoneid) values ('20V0012B','V');
+insert into REL_VISITORZONEACCESS(permitno,zoneid) values ('20V0015J','V');
+insert into REL_VISITORZONEACCESS(permitno,zoneid) values ('20V0021L','V');
+insert into REL_VISITORZONEACCESS(permitno,zoneid) values ('20V0026P','V');
+insert into REL_VISITORZONEACCESS(permitno,zoneid) values ('20V0025B','V');
+
+
+
+/*Insert into NONVISITORPERMIT */
+delete from nonvisitorpermit;
+insert into nonvisitorpermit(univid, permitno, expiretime, expiredate) values ('1007999','20B0001B',to_date('8/9/2021','MM/DD/YYYY'),to_timestamp('11:59 PM','HH.MI PM'));
+insert into nonvisitorpermit(univid, permitno, expiretime, expiredate) values ('1006003','20CS001C',to_date('12/14/2020','MM/DD/YYYY'),to_timestamp('11:59 PM','HH.MI PM'));
+insert into nonvisitorpermit(univid, permitno, expiretime, expiredate) values ('1006020','20D0021D',to_date('7/9/2021','MM/DD/YYYY'),to_timestamp('11:59 PM','HH.MI PM'));
+insert into nonvisitorpermit(univid, permitno, expiretime, expiredate) values ('1006135','20AS016S',to_date('12/31/2020','MM/DD/YYYY'),to_timestamp('11:59 PM','HH.MI PM'));
+insert into nonvisitorpermit(univid, permitno, expiretime, expiredate) values ('1006022','20A0052A',to_date('7/28/2021','MM/DD/YYYY'),to_timestamp('11:59 PM','HH.MI PM'));
+
+
+
+/*insert into vehicle*/
+delete from vehicle;
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('CDF5731','Toyota','Camry',2018,'Red','20V0001A');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('AKL1732','Tesla','Model X',2019,'Silver','20V0021L');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('UGY9123','Nissan','Maxima',2015,'Black','20V0015J');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('TRK1093','Kia','Rio',2017,'Blue','20V0012B');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('UWA1118','Audi','Q3',2016,'White','20V0026P');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('UGB9020','Chevrolet','Cruze',2014,'Silver','20CS001C');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('VTZ87543','Nissan','LEAF',2018,'Black','20B0001B');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('TIR3487','BMW','X5',2017,'White','20D0021D');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('RPU1824','Honda','Odyssey',2016,'Blue','20D0021D');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('NEV9889','Hyundai','Elantra',2011,'Red','20AS016S');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('KTP2003','Acura','RDX',2009,'Black','20A0052A');
+
+
+/*Insert into ASSIGNSINGLE*/
+delete from assignsingle;
+insert into assignsingle(univid,permitno,vehicleno) values ('1006003','20CS001C','UGB9020');
+insert into assignsingle(univid,permitno,vehicleno) values ('1006135','20AS016S','NEV9889');
+
+
+/*Insert into  ASSIGNMULTIPLE*/
+delete from assignmultiple;
+insert into assignmultiple(univid,permitno,vehicleno) values ('1007999','20B0001B','VTZ87543');
+insert into assignmultiple(univid,permitno,vehicleno) values ('1006020','20D0021D','TIR3487');
+insert into assignmultiple(univid,permitno,vehicleno) values ('1006020','20D0021D','RPU1824');
+insert into assignmultiple(univid,permitno,vehicleno) values ('1006022','20A0052A','KTP2003');
