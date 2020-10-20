@@ -38,6 +38,7 @@ public class VisitorUI {
                     //AssignZoneToLot.assignzonetolot(reader,conn);
                     break;
                 case 3:
+                    PayCitation.paycitation(reader,conn);
                     //AssignTypeToSpace.assigntypetospace(reader);
                     //System.out.println("Assign Type To Space");
                     //AssignTypeToSpace.assigntypetospace(reader,conn);
