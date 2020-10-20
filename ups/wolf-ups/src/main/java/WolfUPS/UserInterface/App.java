@@ -39,15 +39,18 @@ public class App
                         AdminUI.adminUI(reader);
                         break;
                     case 2:
-                        //EmployeeUI.employeeUI(reader);
-                        System.out.println("Employee Menu");
+                        EmployeeUI.employeeUI(reader);
                         break;
                     case 3:
                         //StudentUI.studentUI(reader);
                         System.out.println("Student Menu");
                         break;
                     case 4:
+<<<<<<< Updated upstream
                         VisitorUI.visitorui(reader);
+=======
+                        VisitorUI.visitorUI(reader);
+>>>>>>> Stashed changes
                         System.out.println("Visitor Menu");
                         break;
                     case 5:
