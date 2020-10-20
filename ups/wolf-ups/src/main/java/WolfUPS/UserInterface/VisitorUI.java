@@ -34,6 +34,7 @@ public class VisitorUI {
                     GetVisitorPermit.getvisitorpermit(reader,conn);
                     break;
                 case 2:
+                    Vis_Exit_Lot.vis_exit_lot(reader,conn);
                     //AssignZoneToLot.assignzonetolot(reader);
                     //AssignZoneToLot.assignzonetolot(reader,conn);
                     break;
