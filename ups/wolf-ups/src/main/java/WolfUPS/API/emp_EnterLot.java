@@ -41,101 +41,10 @@ public class emp_EnterLot {
             model = reader.readLine();
             System.out.println("Enter car color for "+ VehicleNo);
             car_color = reader.readLine();
-
             
-            rs = st.executeQuery("select to_char(sysdate,\'YYYY-MM-DD\') as CreateDate, to_char(current_timestamp,\'YYYY-MM-DD hh24:mi:ss\') as Timestamp, to_char(sysdate+30,\'YYYY-MM-DD\') as DueDate from dual");
-            rs.next();
-            issueDate = rs.getString("CreateDate");
-            issueTime = rs.getString("Timestamp");
-            PaymentDue = rs.getString("DueDate");
+            /*Issue Citation No Permit */
+            IssueCitation.issuecitation(conn, emp_id, VehicleNo, Invalid_LotName, model, car_color, "No Permit", 40, "Employee");
             
-            rs = st.executeQuery("Select Max(CITATIONNO) from CITATION");
-
-            if(!rs.next())
-                CitationNo = 10001;
-            else
-                CitationNo = rs.getInt(1) + 1;
-
-            try{
-                /* disable the auto commit*/
-                conn.setAutoCommit(false);
-                /* Seting the transaction Managment variables to capture the failure*/
-                boolean trans1 = false,trans2 = false;
-
-                /*Insert Citation into the Citation table*/
-                try {
-                    sql = "INSERT INTO CITATION VALUES(?, ?, ?, ?, TO_DATE(\'" + issueDate +"00:00:00\', \'YYYY-MM-DD hh24:mi:ss\'), ?, ?, ?, TO_TIMESTAMP(\'" + issueTime +"\', \'YYYY-MM-DD hh24:mi:ss\'), ?, TO_DATE(\'" + PaymentDue +"00:00:00\', \'YYYY-MM-DD hh24:mi:ss\'), ?)";
-                    ps = conn.prepareStatement(sql);
-                    ps.setInt(1, CitationNo);
-                    ps.setString(2, VehicleNo);
-                    ps.setString(3, model);
-                    ps.setString(4, car_color);
-                    ps.setString(5, "Unpaid");
-                    ps.setString(6, "employee");
-                    ps.setString(7, Invalid_LotName);
-                    ps.setString(8, "No Permit");
-                    ps.setInt(9, 40);
-                    rs = ps.executeQuery();
-
-                    if (rs != null) {
-                        System.out.println("Citation "+ CitationNo +" entry created successfully");
-                        trans1 = true;
-                    } else {
-                        System.out.println("Unable to create the Citation");
-                        trans1 = false;
-                    }
-                    
-                }
-                catch (SQLException e){
-                    System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
-                    e.printStackTrace();
-                    conn.rollback();
-                    trans1 = false;
-                    return;
-                }
-
-
-                /*Insert into the Notification Non visitor table*/
-                try {
-                    sql = "INSERT INTO NOTIFICATIONNONVISITOR VALUES(?, ?)";
-                    ps = conn.prepareStatement(sql);
-                    ps.setString(1, emp_id);
-                    ps.setInt(2, CitationNo);
-                
-                    rs = ps.executeQuery();
-
-                    if (rs != null) {
-                        System.out.println("Notification for NO PERMIT citation sent successfully");
-                        trans2 = true;
-                    } else {
-                        System.out.println("Unable to send notification to employee");
-                        trans2 = false;
-                    }
-                    
-                }
-                catch (SQLException e){
-                    System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
-                    e.printStackTrace();
-                    conn.rollback();
-                    trans2 = false;
-                    return;
-                }
-                /* Transaction management check*/
-                if (trans1 && trans2){
-                    conn.commit();
-                    System.out.println("Transaction Successful!");
-                }
-                else{
-                    conn.rollback();
-                    System.out.println("Transaction Failed");
-                }
-                conn.setAutoCommit(true);
-            }
-            catch (SQLException e) {
-                System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
-                e.printStackTrace();
-                conn.rollback();
-            }
             return ;
         }
         
@@ -149,109 +58,17 @@ public class emp_EnterLot {
             System.out.println("Please enter the lot name:");
             Invalid_LotName = reader.readLine();
 
-            System.out.println("Vehicle is not Registered to any permit.\n\nIssue citation \"NO PERMIT\" to - "+ VehicleNo +" for attempting to park with unregistered Vehicle.");
+            System.out.println("Vehicle is not Registered to any permit.\n\nIssue citation \"Invalid Permit\" to - "+ VehicleNo +" for attempting to park with unregistered Vehicle.");
             
-            System.out.println("Please enter the details for "+ VehicleNo + " to issue Citation \"NO PERMIT\".");
+            System.out.println("Please enter the details for "+ VehicleNo + " to issue Citation \"Invalid Permit\".");
             System.out.println("Enter car model for "+ VehicleNo);
             model = reader.readLine();
             System.out.println("Enter car color for "+ VehicleNo);
             car_color = reader.readLine();
 
+            /* Issue Citation No Permit*/
+            IssueCitation.issuecitation(conn, emp_id, VehicleNo, Invalid_LotName, model, car_color, "Invalid Permit", 20, "Employee");
             
-            rs = st.executeQuery("select to_char(sysdate,\'YYYY-MM-DD\') as CreateDate, to_char(current_timestamp,\'YYYY-MM-DD hh24:mi:ss\') as Timestamp, to_char(sysdate+30,\'YYYY-MM-DD\') as DueDate from dual");
-            rs.next();
-            issueDate = rs.getString("CreateDate");
-            issueTime = rs.getString("Timestamp");
-            PaymentDue = rs.getString("DueDate");
-            
-            rs = st.executeQuery("Select Max(CITATIONNO) from CITATION");
-
-            if(!rs.next())
-                CitationNo = 10001;
-            else
-                CitationNo = rs.getInt(1) + 1;
-
-            try{
-                /* disable the auto commit*/
-                conn.setAutoCommit(false);
-                /* Seting the transaction Managment variables to capture the failure*/
-                boolean trans1 = false,trans2 = false;
-
-                /*Insert Citation into the Citation table*/
-                try {
-                    sql = "INSERT INTO CITATION VALUES(?, ?, ?, ?, TO_DATE(\'" + issueDate +"00:00:00\', \'YYYY-MM-DD hh24:mi:ss\'), ?, ?, ?, TO_TIMESTAMP(\'" + issueTime +"\', \'YYYY-MM-DD hh24:mi:ss\'), ?, TO_DATE(\'" + PaymentDue +"00:00:00\', \'YYYY-MM-DD hh24:mi:ss\'), ?)";
-                    ps = conn.prepareStatement(sql);
-                    ps.setInt(1, CitationNo);
-                    ps.setString(2, VehicleNo);
-                    ps.setString(3, model);
-                    ps.setString(4, car_color);
-                    ps.setString(5, "Unpaid");
-                    ps.setString(6, "employee");
-                    ps.setString(7, Invalid_LotName);
-                    ps.setString(8, "No Permit");
-                    ps.setInt(9, 40);
-                    rs = ps.executeQuery();
-
-                    if (rs != null) {
-                        System.out.println("Citation "+ CitationNo +" entry created successfully");
-                        trans1 = true;
-                    } else {
-                        System.out.println("Unable to create the Citation");
-                        trans1 = false;
-                    }
-                    
-                }
-                catch (SQLException e){
-                    System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
-                    e.printStackTrace();
-                    conn.rollback();
-                    trans1 = false;
-                    return;
-                }
-
-
-                /*Insert into the Notification Non visitor table*/
-                try {
-                    sql = "INSERT INTO NOTIFICATIONNONVISITOR VALUES(?, ?)";
-                    ps = conn.prepareStatement(sql);
-                    ps.setString(1, emp_id);
-                    ps.setInt(2, CitationNo);
-                
-                    rs = ps.executeQuery();
-
-                    if (rs != null) {
-                        System.out.println("Notification for NO PERMIT citation sent successfully");
-                        trans2 = true;
-                    } else {
-                        System.out.println("Unable to send notification to employee");
-                        trans2 = false;
-                    }
-                    
-                }
-                catch (SQLException e){
-                    System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
-                    e.printStackTrace();
-                    conn.rollback();
-                    trans2 = false;
-                    return;
-                }
-                /* Transaction management check*/
-                if (trans1 && trans2){
-                    conn.commit();
-                    System.out.println("Transaction Successful!");
-                }
-                else{
-                    conn.rollback();
-                    System.out.println("Transaction Failed");
-                }
-                conn.setAutoCommit(true);
-            }
-            catch (SQLException e) {
-                System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
-                e.printStackTrace();
-                conn.rollback();
-            }
- 
             return ;
         }
 
@@ -266,106 +83,22 @@ public class emp_EnterLot {
 
             System.out.println("Invalid permit, this vehicle is not assigned to the permit.\n\nIssue citation \"INVALID PERMIT\" to - "+ VehicleNo +" for attempting to park with wrong Permit.");
             
-            sql = "Select MODEL,COLOR from VEHICLE where LICENSEPLATE = \'" + VehicleNo + "\'";
-            rs = st.executeQuery(sql);
-            rs.next();
-            model = rs.getString("MODEL");
-            car_color = rs.getString("COLOR");
+            System.out.println("Please enter the details for "+ VehicleNo + " to issue Citation \"Invalid Permit\".");
+            System.out.println("Enter car model for "+ VehicleNo);
+            model = reader.readLine();
+            System.out.println("Enter car color for "+ VehicleNo);
+            car_color = reader.readLine();
+
+            IssueCitation.issuecitation(conn, emp_id, VehicleNo, Invalid_LotName, model, car_color, "Invalid Permit", 20, "Employee");
             
-            rs = st.executeQuery("select to_char(sysdate,\'YYYY-MM-DD\') as CreateDate, to_char(current_timestamp,\'YYYY-MM-DD hh24:mi:ss\') as Timestamp, to_char(sysdate+30,\'YYYY-MM-DD\') as DueDate from dual");
-            rs.next();
-            issueDate = rs.getString("CreateDate");
-            issueTime = rs.getString("Timestamp");
-            PaymentDue = rs.getString("DueDate");
-            
-            rs = st.executeQuery("Select Max(CITATIONNO) from CITATION");
-
-            if(!rs.next())
-                CitationNo = 10001;
-            else
-                CitationNo = rs.getInt(1) + 1;
-
-            try{
-                /* disable the auto commit*/
-                conn.setAutoCommit(false);
-                /* Seting the transaction Managment variables to capture the failure*/
-                boolean trans1 = false,trans2 = false;
-
-                /*Insert Citation into the Citation table*/
-                try {
-                    sql = "INSERT INTO CITATION VALUES(?, ?, ?, ?, TO_DATE(\'" + issueDate +"00:00:00\', \'YYYY-MM-DD hh24:mi:ss\'), ?, ?, ?, TO_TIMESTAMP(\'" + issueTime +"\', \'YYYY-MM-DD hh24:mi:ss\'), ?, TO_DATE(\'" + PaymentDue +"00:00:00\', \'YYYY-MM-DD hh24:mi:ss\'), ?)";
-                    ps = conn.prepareStatement(sql);
-                    ps.setInt(1, CitationNo);
-                    ps.setString(2, VehicleNo);
-                    ps.setString(3, model);
-                    ps.setString(4, car_color);
-                    ps.setString(5, "Unpaid");
-                    ps.setString(6, "employee");
-                    ps.setString(7, Invalid_LotName);
-                    ps.setString(8, "Invalid Permit");
-                    ps.setInt(9, 20);
-                    rs = ps.executeQuery();
-
-                    if (rs != null) {
-                        System.out.println("Citation "+ CitationNo +" entry created successfully");
-                        trans1 = true;
-                    } else {
-                        System.out.println("Unable to create the Citation");
-                        trans1 = false;
-                    }
-                    
-                }
-                catch (SQLException e){
-                    System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
-                    e.printStackTrace();
-                    conn.rollback();
-                    trans1 = false;
-                    return;
-                }
-
-
-                /*Insert into the Notification Non visitor table*/
-                try {
-                    sql = "INSERT INTO NOTIFICATIONNONVISITOR VALUES(?, ?)";
-                    ps = conn.prepareStatement(sql);
-                    ps.setString(1, emp_id);
-                    ps.setInt(2, CitationNo);
-                
-                    rs = ps.executeQuery();
-
-                    if (rs != null) {
-                        System.out.println("Notification for Invalid Permit citation sent successfully");
-                        trans2 = true;
-                    } else {
-                        System.out.println("Unable to send notification for Invalid Permit");
-                        trans2 = false;
-                    }
-                    
-                }
-                catch (SQLException e){
-                    System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
-                    e.printStackTrace();
-                    conn.rollback();
-                    trans2 = false;
-                    return;
-                }
-                /* Transaction management check*/
-                if (trans1 && trans2){
-                    conn.commit();
-                    System.out.println("Transaction Successful!");
-                }
-                else{
-                    conn.rollback();
-                    System.out.println("Transaction Failed");
-                }
-                conn.setAutoCommit(true);
-            }
-            catch (SQLException e) {
-                System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
-                e.printStackTrace();
-                conn.rollback();
-            }
-
+            return;
+        }
+        /* Vehicle is already in the lot, need not enter again*/
+        sql = "Select * from ASSIGNMULTIPLE WHERE VEHICLENO = \'" + VehicleNo + "\' AND PARKEDAT IS NOT NULL";
+        rs = st.executeQuery(sql);
+        
+        if(rs.next()){
+            System.out.println("Vehicle already in the lot. Invalid Request\n");
             return;
         }
 
@@ -374,15 +107,10 @@ public class emp_EnterLot {
                 +"from SPACE S, REL_ALLOCATED A "
                 +"where S.LOTNAME=A.NAME and (A.ZONEID = (Select ZONEID from PERMIT where PERMITNO=\'"+ PermitNo +"\') "
                         +"OR A.ZONEID = (Select replace(ZONEID||'S',chr(32),'')  from PERMIT where PERMITNO=\'"+ PermitNo +"\')) "
-                        +"AND UPPER(S.SPACETYPE) = (Select DISTINCT UPPER(SPACETYPE) from PERMIT where PERMITNO=\'"+ PermitNo +"\') "
+                        +"AND UPPER(S.SPACETYPE) = (Select DISTINCT UPPER(SPACETYPE) from PERMIT where PERMITNO=\'"+ PermitNo +"\') AND ISAVAILABLE=1 "
                 +"GROUP BY S.LOTNAME,A.ZONEID, S.SPACETYPE "
                 +"ORDER BY S.LOTNAME";
         rs = st.executeQuery(sql);
-
-        if(!rs.next()){
-            System.out.println(" No Lots available to park, as all are full.\nReturning to the MAIN menu");
-            return;
-        }
 
         System.out.println("Below are the list of Lots available to park");
         while(rs.next()){
@@ -404,103 +132,8 @@ public class emp_EnterLot {
             model = rs.getString("MODEL");
             car_color = rs.getString("COLOR");
 
-            
-            rs = st.executeQuery("select to_char(sysdate,\'YYYY-MM-DD\') as CreateDate, to_char(current_timestamp,\'YYYY-MM-DD hh24:mi:ss\') as Timestamp, to_char(sysdate+30,\'YYYY-MM-DD\') as DueDate from dual");
-            rs.next();
-            issueDate = rs.getString("CreateDate");
-            issueTime = rs.getString("Timestamp");
-            PaymentDue = rs.getString("DueDate");
-            
-            rs = st.executeQuery("Select Max(CITATIONNO) from CITATION");
-
-            if(!rs.next())
-                CitationNo = 10001;
-            else
-                CitationNo = rs.getInt(1) + 1;
-
-            try{
-                /* disable the auto commit*/
-                conn.setAutoCommit(false);
-                /* Seting the transaction Managment variables to capture the failure*/
-                boolean trans1 = false,trans2 = false;
-
-                /*Insert Citation into the Citation table*/
-                try {
-                    sql = "INSERT INTO CITATION VALUES(?, ?, ?, ?, TO_DATE(\'" + issueDate +"00:00:00\', \'YYYY-MM-DD hh24:mi:ss\'), ?, ?, ?, TO_TIMESTAMP(\'" + issueTime +"\', \'YYYY-MM-DD hh24:mi:ss\'), ?, TO_DATE(\'" + PaymentDue +"00:00:00\', \'YYYY-MM-DD hh24:mi:ss\'), ?)";
-                    ps = conn.prepareStatement(sql);
-                    ps.setInt(1, CitationNo);
-                    ps.setString(2, VehicleNo);
-                    ps.setString(3, model);
-                    ps.setString(4, car_color);
-                    ps.setString(5, "Unpaid");
-                    ps.setString(6, "employee");
-                    ps.setString(7, LotName);
-                    ps.setString(8, "Invalid Permit");
-                    ps.setInt(9, 20);
-                    rs = ps.executeQuery();
-
-                    if (rs != null) {
-                        System.out.println("Citation "+ CitationNo +" entry created successfully");
-                        trans1 = true;
-                    } else {
-                        System.out.println("Unable to create the Citation");
-                        trans1 = false;
-                    }
-                    
-                }
-                catch (SQLException e){
-                    System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
-                    e.printStackTrace();
-                    conn.rollback();
-                    trans1 = false;
-                    return;
-                }
-
-
-                /*Insert into the Notification Non visitor table*/
-                try {
-                    sql = "INSERT INTO NOTIFICATIONNONVISITOR VALUES(?, ?)";
-                    ps = conn.prepareStatement(sql);
-                    ps.setString(1, emp_id);
-                    ps.setInt(2, CitationNo);
-                
-                    rs = ps.executeQuery();
-
-                    if (rs != null) {
-                        System.out.println("Notification for Invalid Permit citation sent successfully");
-                        trans2 = true;
-                    } else {
-                        System.out.println("Unable to send notification for Invalid Permit");
-                        trans2 = false;
-                    }
-                    
-                }
-                catch (SQLException e){
-                    System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
-                    e.printStackTrace();
-                    conn.rollback();
-                    trans2 = false;
-                    return;
-                }
-                /* Transaction management check*/
-                if (trans1 && trans2){
-                    conn.commit();
-                    System.out.println("Transaction Successful!");
-                }
-                else{
-                    conn.rollback();
-                    System.out.println("Transaction Failed");
-                }
-                conn.setAutoCommit(true);
-            }
-            catch (SQLException e) {
-                System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
-                e.printStackTrace();
-                conn.rollback();
-            }
-
-            return;
-            
+            IssueCitation.issuecitation(conn, emp_id, VehicleNo, LotName, model, car_color, "Invalid Permit", 20, "Employee");
+            return;            
         }
 
         sql = "Select ZONEID,SPACETYPE from PERMIT where PERMITNO = \'" + PermitNo + "\'";
@@ -515,8 +148,8 @@ public class emp_EnterLot {
         rs.next();
         SPC_ID = rs.getInt("CNT");
 
-        System.out.println(LotName + " " + SPC_ID + " " + Spacetype);
-        System.out.println(PermitNo + " " + emp_id);
+        //System.out.println(LotName + " " + SPC_ID + " " + Spacetype);
+        //System.out.println(PermitNo + " " + emp_id);
 
         try{
             /* disable the auto commit*/
@@ -554,12 +187,12 @@ public class emp_EnterLot {
 
             /* Update Assign Multiple table and enter the Timestamp along with lot and SpaceID*/
             try {
-                sql = "UPDATE ASSIGNMULTIPLE SET LOTNAME = ?, SPACENO = ?,PARKEDAT = current_timestamp WHERE PERMITNO = ? AND UNIVID=?";
+                sql = "UPDATE ASSIGNMULTIPLE SET LOTNAME = ?, SPACENO = ?,PARKEDAT = current_timestamp WHERE PERMITNO = ? AND VEHICLENO=?";
                 ps = conn.prepareStatement(sql);
                 ps.setString(1, LotName);
                 ps.setInt(2, SPC_ID);
                 ps.setString(3, PermitNo);
-                ps.setString(4, emp_id);
+                ps.setString(4, VehicleNo);
 
                 rs = ps.executeQuery();
 

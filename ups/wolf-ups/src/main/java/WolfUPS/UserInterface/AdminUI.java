@@ -21,35 +21,9 @@ public class AdminUI {
         ResultSet rs = st.executeQuery(admin_check);
         
         if(!rs.next()){
-            
-            System.out.println("Not a valid Admin Univid\n");
-
-            sb.append("Would you like to try again:\n");
-            sb.append("1. Re-Enter Admin univid\n");
-            sb.append("otherwise back to Main Menu.");
-            System.out.println(sb.toString());
-
-            try {
-                String choice = reader.readLine();
-                switch (Integer.parseInt(choice)) {
-                    case 1:
-                        System.out.println("Please enter the Admin University ID:");
-                        admin_check = "Select * from EMPLOYEE where UNIVID = \'" + reader.readLine() + "\' AND ISADMIN=1";
-                        rs = st.executeQuery(admin_check);
-
-                        if(!rs.next()){
-                            System.out.println("Not a valid Admin Univid.\nSwitching back to MAIN MENU");
-                            return ;
-                        }    
-                        break;
-                    default:
-                        return ;
-                }
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
-        }
+            System.out.println("Not a valid Admin Univid.\nSwitching back to MAIN MENU");
+            return ;
+        }         
         StringBuilder sb1 = null;
         sb1 = new StringBuilder();
             
