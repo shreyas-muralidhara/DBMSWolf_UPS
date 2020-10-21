@@ -45,8 +45,7 @@ public class EmployeeUI {
                     emp_EnterLot.enterlot(reader,conn,emp_id);
                     break;
                 case 2:
-                    System.out.println("Exit Lot");
-                    //emp_ExitLot.exitlot(reader,conn);
+                    emp_ExitLot.exitlot(reader,conn,emp_id);
                     break;
                 case 3:
                     System.out.println("View Permits and Citation");
