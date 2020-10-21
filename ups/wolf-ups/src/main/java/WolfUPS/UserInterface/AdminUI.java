@@ -62,8 +62,8 @@ public class AdminUI {
                     System.out.println("Check Visitor Valid Parking");
                     break;
                 case "6":
-                    //CheckNVValidParking.checknvvalidparking(reader);
                     System.out.println("Check Non-Visitor Valid Parking");
+                    CheckNVValidParking.checknvvalidparking(reader,conn);
                     break;
                 default:
                     return ;
