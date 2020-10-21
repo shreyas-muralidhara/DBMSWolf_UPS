@@ -395,7 +395,8 @@ insert into space(spaceid,lotname,isavailable,isvisitor) values (196,'Premiere L
 insert into space(spaceid,lotname,isavailable,isvisitor) values (197,'Premiere Lot',1,0);
 insert into space(spaceid,lotname,isavailable,isvisitor) values (198,'Premiere Lot',1,0);
 insert into space(spaceid,lotname,isavailable,isvisitor) values (199,'Premiere Lot',1,0);
-insert into space(spaceid,lotname,isavailable,isvisitor) values (199,'Premiere Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (199,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (200,'Premiere Lot',1,1);
 insert into space(spaceid,lotname,isavailable,isvisitor) values (1,'Justice Lot',1,0);
 insert into space(spaceid,lotname,isavailable,isvisitor) values (2,'Justice Lot',1,0);
 insert into space(spaceid,lotname,isavailable,isvisitor) values (3,'Justice Lot',1,0);
@@ -581,6 +582,7 @@ insert into nonvisitor (univid, phoneno) values ('1006135','9900544568');
 insert into nonvisitor (univid, phoneno) values ('1006022','9900544569');
 
 
+
 /*insert into student*/
 delete from student;
 insert into student (univid) values ('1006003');
@@ -589,7 +591,6 @@ insert into student (univid) values ('1006135');
 
 /*insert into employee*/
 delete from employee;
-insert into employee (univid,isadmin) values ('1000001',1);
 insert into employee (univid,isadmin) values ('1007999',1);
 insert into employee (univid,isadmin) values ('1006020',0);
 insert into employee (univid,isadmin) values ('1006022',0);
@@ -674,6 +675,7 @@ insert into assignmultiple(univid,permitno,vehicleno) values ('1006020','20D0021
 insert into assignmultiple(univid,permitno,vehicleno) values ('1006022','20A0052A','KTP2003');
 
 /*Insert into citation*/
+delete from citation;
 insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10001,'TRK1093','Rio','Blue',to_date('8/14/2020','MM/DD/YYYY'),'Paid','visitor','Justice Lot',to_timestamp('2:40 PM','HH.MI PM'),'Expired Permit',to_date('9/13/2020','MM/DD/YYYY'),25);
 insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10002,'UGY9123','Maxima','Black',to_date('8/17/2020','MM/DD/YYYY'),'Unpaid','visitor','Justice Lot',to_timestamp('12:55 PM','HH.MI PM'),'Expired Permit',to_date('9/16/2020','MM/DD/YYYY'),25);
 insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10003,'AKL1732','ModelX','Silver',to_date('8/17/2020','MM/DD/YYYY'),'Unpaid','visitor','Justice Lot',to_timestamp('1:00 PM','HH.MI PM'),'Expired Permit',to_date('9/16/2020','MM/DD/YYYY'),25);
@@ -682,13 +684,13 @@ insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,
 insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10006,'TRK1093','Rio','Blue',to_date('9/21/2020','MM/DD/YYYY'),'Unpaid','visitor','Premiere Lot',to_timestamp('2:00 PM','HH.MI PM'),'Expired Permit',to_date('10/20/2020','MM/DD/YYYY'),25);
 
 /*Insert into NOTIFICATIONVISITOR*/
-
+delete from notificationvisitor;
 insert into notificationvisitor(phoneno, citationno) values (9900544565,10001);
 insert into notificationvisitor(phoneno, citationno) values (9900544562,10002);
 insert into notificationvisitor(phoneno, citationno) values (9900544563,10003);
 insert into notificationvisitor(phoneno, citationno) values (9900544565,10006);
 
 /*Insert into NOTIFICATIONNONVISITOR*/
-
-insert into notificationnonvisitor insert into notificationvisitor(phoneno, citationno) values (9900544568,10004);
-insert into notificationnonvisitor insert into notificationvisitor(phoneno, citationno) values (9900544566,10005);
+delete from notificationnonvisitor;
+insert into notificationnonvisitor(univid, citationno) values ('1006135',10004);
+insert into notificationnonvisitor(univid, citationno) values ('1006022',10005);
