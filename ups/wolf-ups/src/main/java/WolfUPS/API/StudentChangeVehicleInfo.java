@@ -26,7 +26,7 @@ public class StudentChangeVehicleInfo {
                 String permitNum = rs.getString("PERMITNO");
                 System.out.println("Enter Permit ID to verify:\n");
                 enteredPermit = reader.readLine();
-                System.out.println(permitNum + "     " + enteredPermit);
+                // System.out.println(permitNum + "     " + enteredPermit);
                 // if permit id entered by Student is correct, then proceed
                 if (permitNum.equals(enteredPermit)){
                     System.out.println("\nEnter vehicle license plate value:");

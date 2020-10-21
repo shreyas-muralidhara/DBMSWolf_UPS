@@ -18,7 +18,7 @@ public class EmployeeUI {
         // Prompt to enter the Employee University ID, authenticate the user as Employee.
         System.out.println("Please enter the Employee University ID:");
         String emp_id = reader.readLine();
-        ResultSet rs = st.executeQuery("Select * from EMPLOYEE where UNIVID = \'" + emp_id + "\' AND ISADMIN=0");
+        ResultSet rs = st.executeQuery("Select * from EMPLOYEE where UNIVID = \'" + emp_id + "\'");
         
         if(!rs.next()){
             System.out.println("Not a valid Employee University ID.\nSwitching back to MAIN MENU");
@@ -48,8 +48,7 @@ public class EmployeeUI {
                     emp_ExitLot.exitlot(reader,conn,emp_id);
                     break;
                 case "3":
-                    System.out.println("View Permits and Citation");
-                    //emp_ViewPermitsCitations.viewpermitscitations(reader,conn);
+                    emp_ViewVehicleInfo.viewvehicleinfo(reader,conn, emp_id);
                     break;
                 case "4":
                     System.out.println("View/Change vehicle list");
