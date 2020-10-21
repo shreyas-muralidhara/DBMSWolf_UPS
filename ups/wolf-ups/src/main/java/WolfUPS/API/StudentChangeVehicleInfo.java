@@ -81,6 +81,7 @@ public class StudentChangeVehicleInfo {
                                 // store old vehicle details for fututre updates
                                 String SQL_get_vehicle = "SELECT * FROM VEHICLE WHERE PERMITNO = \'" + permitNum + "\'";
                                 rs_old_vehicle = st.executeQuery(SQL_get_vehicle);
+                                rs_old_vehicle.next();
 
 
                                 // delete vehicle from vehicle list, expect cascade delete in assignsingle
