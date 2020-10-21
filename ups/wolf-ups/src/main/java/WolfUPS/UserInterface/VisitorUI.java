@@ -33,11 +33,7 @@ public class VisitorUI {
                     System.out.println("Get Permit");
                     GetVisitorPermit.getvisitorpermit(reader,conn);
                     break;
-<<<<<<< HEAD
-                case 2:
-=======
                 case "2":
->>>>>>> 29251c5fe1e1299579a113af67c322f3a3953b00
                     Vis_Exit_Lot.vis_exit_lot(reader,conn);
                     //AssignZoneToLot.assignzonetolot(reader);
                     //AssignZoneToLot.assignzonetolot(reader,conn);
