@@ -13,7 +13,7 @@ public class AdminUI {
     public static void adminUI(BufferedReader reader) throws NumberFormatException, IOException, SQLException{
         Connection conn = InitializeConnection.InitConn();
         Statement st = conn.createStatement();
-        StringBuilder sb = new StringBuilder();
+        // StringBuilder sb = new StringBuilder();
 
         // Prompt to enter the Admin University ID, authenticate the user as Admin.
         System.out.println("Please enter the Admin University ID:");
@@ -41,27 +41,27 @@ public class AdminUI {
 
         try {
             String entry01 = reader.readLine();
-            switch (Integer.parseInt(entry01)) {
-                case 1:
+            switch (entry01) {
+                case "1":
                     AddLot.addlot(reader,conn);
                     break;
-                case 2:
+                case "2":
                     //AssignZoneToLot.assignzonetolot(reader);
                     AssignZoneToLot.assignzonetolot(reader,conn);
                     break;
-                case 3:
+                case "3":
                     //AssignTypeToSpace.assigntypetospace(reader);
                     System.out.println("Assign Type To Space");
                     AssignTypeToSpace.assigntypetospace(reader,conn);
                     break;
-                case 4:
+                case "4":
                     AssignPermit.assignpermit(reader,conn);
                     break;
-                case 5:
+                case "5":
                     //CheckVValidParking.checkvvalidparking(reader);
                     System.out.println("Check Visitor Valid Parking");
                     break;
-                case 6:
+                case "6":
                     //CheckNVValidParking.checknvvalidparking(reader);
                     System.out.println("Check Non-Visitor Valid Parking");
                     break;

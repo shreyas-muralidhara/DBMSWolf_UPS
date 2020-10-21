@@ -40,22 +40,22 @@ public class EmployeeUI {
 
         try {
             String entry01 = reader.readLine();
-            switch (Integer.parseInt(entry01)) {
-                case 1:
+            switch (entry01) {
+                case "1":
                     emp_EnterLot.enterlot(reader,conn,emp_id);
                     break;
-                case 2:
+                case "2":
                     emp_ExitLot.exitlot(reader,conn,emp_id);
                     break;
-                case 3:
+                case "3":
                     System.out.println("View Permits and Citation");
                     //emp_ViewPermitsCitations.viewpermitscitations(reader,conn);
                     break;
-                case 4:
+                case "4":
                     System.out.println("View/Change vehicle list");
                     //emp_ChangeVehicleList.changevehiclelist(reader,conn);
                     break;
-                case 5:
+                case "5":
                     PayCitation.paycitation(reader,conn);
                     System.out.println("Pay Citations");
                     break;

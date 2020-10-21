@@ -34,21 +34,21 @@ public class App
 
             try {
                 String choice = reader.readLine();
-                switch (Integer.parseInt(choice)) {
-                    case 1:
+                switch (choice) {
+                    case "1":
                         AdminUI.adminUI(reader);
                         break;
-                    case 2:
+                    case "2":
                         EmployeeUI.employeeUI(reader);
                         break;
-                    case 3:
-                        //StudentUI.studentUI(reader);
+                    case "3":
+                        StudentUI.studentUI(reader);
                         System.out.println("Student Menu");
                         break;
-                    case 4:
+                    case "4":
                         VisitorUI.visitorui(reader);
                         break;
-                    case 5:
+                    case "5":
                         //DemoQueryUI.demoqueryUI(reader);
                         System.out.println("List of demo queries");
                         break;
