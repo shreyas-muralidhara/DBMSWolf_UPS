@@ -28,16 +28,17 @@ public class VisitorUI {
 
         try {
             String entry01 = reader.readLine();
-            switch (Integer.parseInt(entry01)) {
-                case 1:
+            switch (entry01) {
+                case "1":
                     System.out.println("Get Permit");
                     GetVisitorPermit.getvisitorpermit(reader,conn);
                     break;
-                case 2:
+                case "2":
+                    Vis_Exit_Lot.vis_exit_lot(reader,conn);
                     //AssignZoneToLot.assignzonetolot(reader);
                     //AssignZoneToLot.assignzonetolot(reader,conn);
                     break;
-                case 3:
+                case "3":
                     PayCitation.paycitation(reader,conn);
                     //AssignTypeToSpace.assigntypetospace(reader);
                     //System.out.println("Assign Type To Space");
