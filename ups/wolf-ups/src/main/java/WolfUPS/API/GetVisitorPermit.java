@@ -33,7 +33,7 @@ public class GetVisitorPermit {
         // Prompt the visitor to enter phone number.
         System.out.println("Please enter your phone number - Enter digits only");
         ph_num = reader.readLine();
-        String visitor_check = "Select * from VISITORPERMIT where PHONENO = \'" + ph_num + "\'";
+        String visitor_check = "Select P.PERMITNO from VISITORPERMIT P, VEHICLE V where P.PHONENO = \'" + ph_num + "\' AND P.PERMITNO = V.PERMITNO";
         rs = st.executeQuery(visitor_check);
 
         if(rs.next()){
