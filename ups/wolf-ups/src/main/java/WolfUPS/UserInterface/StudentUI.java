@@ -23,34 +23,10 @@ public class StudentUI {
         ResultSet rs = st.executeQuery(student_check);
         
         if(!rs.next()){
-            
-            System.out.println("Not a valid Student ID!\n");
-            sb.append("Would you like to try again?\n");
-            sb.append("Enter 1 to Re-Enter University ID\n");
-            sb.append("Enter anything else to go back to Main Menu.");
-            System.out.println(sb.toString());
-
-            try {
-                String choice = reader.readLine();
-                switch (choice) {
-                    case "1":
-                        System.out.println("Re-enter Student University ID:");
-                        UNIV_ID = reader.readLine();
-                        student_check = "Select * from STUDENT where UNIVID = \'" + UNIV_ID + "\'";
-                        rs = st.executeQuery(student_check);
-
-                        if(!rs.next()){
-                            System.out.println("Not a valid university ID.\nSwitching back to MAIN MENU.");
-                            return ;
-                        }    
-                        break;
-                    default: return ;
-                }
-            }
-            catch (Exception e){
-                e.printStackTrace();
-            }
-        }
+            System.out.println("Not a valid Admin Univid.\nSwitching back to MAIN MENU");
+            return ;
+        }    
+        
         StringBuilder sb1 = null;
         sb1 = new StringBuilder();
             
