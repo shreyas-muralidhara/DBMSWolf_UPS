@@ -106,7 +106,7 @@ public class emp_EnterLot {
         sql = "Select S.LOTNAME, A.ZONEID, S.SPACETYPE, count(*) AS COUNT "
                 +"from SPACE S, REL_ALLOCATED A "
                 +"where S.LOTNAME=A.NAME and (A.ZONEID = (Select ZONEID from PERMIT where PERMITNO=\'"+ PermitNo +"\') "
-                        +"OR A.ZONEID = (Select replace(ZONEID||'S',chr(32),'')  from PERMIT where PERMITNO=\'"+ PermitNo +"\')) "
+                        +"OR A.ZONEID IN (\'AS\',\'BS\',\'CS\',\'DS\',\'RS\')) "
                         +"AND UPPER(S.SPACETYPE) = (Select DISTINCT UPPER(SPACETYPE) from PERMIT where PERMITNO=\'"+ PermitNo +"\') AND ISAVAILABLE=1 "
                 +"GROUP BY S.LOTNAME,A.ZONEID, S.SPACETYPE "
                 +"ORDER BY S.LOTNAME";

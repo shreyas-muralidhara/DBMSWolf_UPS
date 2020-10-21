@@ -31,8 +31,8 @@ public class EmployeeUI {
         sb1.append("Please select from the EMPLOYEE MENU options:\n");
         sb1.append("1. Enter lot\n");
         sb1.append("2. Exit lot\n");
-        sb1.append("3. View Permits and Citations\n");
-        sb1.append("4. View/Change Vehicle List\n");
+        sb1.append("3. View Permits\n");
+        sb1.append("4. Change Vehicle Info\n");
         sb1.append("5. Pay Citation\n");
         sb1.append("Otherwise back to Main Menu\n");
         System.out.println(sb1.toString());
@@ -51,8 +51,7 @@ public class EmployeeUI {
                     emp_ViewVehicleInfo.viewvehicleinfo(reader,conn, emp_id);
                     break;
                 case "4":
-                    System.out.println("View/Change vehicle list");
-                    //emp_ChangeVehicleList.changevehiclelist(reader,conn);
+                    emp_ChangeVehicleInfo.changevehicleinfo(reader,conn, emp_id);
                     break;
                 case "5":
                     PayCitation.paycitation(reader,conn);
