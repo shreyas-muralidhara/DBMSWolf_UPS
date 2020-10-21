@@ -49,7 +49,7 @@ public class App
                         VisitorUI.visitorui(reader);
                         break;
                     case "5":
-                        //DemoQueryUI.demoqueryUI(reader);
+                        DemoQueries.demoqueries(reader);
                         System.out.println("List of demo queries");
                         break;
                     default:
