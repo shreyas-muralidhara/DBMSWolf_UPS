@@ -58,7 +58,7 @@ public class AdminUI {
                     AssignPermit.assignpermit(reader,conn);
                     break;
                 case "5":
-                    //CheckVValidParking.checkvvalidparking(reader);
+                    CheckVValidParking.checkvvalidparking(reader,conn);
                     System.out.println("Check Visitor Valid Parking");
                     break;
                 case "6":
