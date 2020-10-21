@@ -1,176 +1,694 @@
+/*Insert values in ParkingLot*/
 
-CREATE TABLE PARKINGLOT(
-NAME VARCHAR2(20) PRIMARY KEY,
-ADDRESS VARCHAR2(30));
-
-
-CREATE TABLE SPACE(
-SPACEID VARCHAR2(10) NOT NULL,
-SPACETYPE VARCHAR2(12) DEFAULT 'regular',
-LOTNAME VARCHAR2(20),
-CONSTRAINT SPACE_LOT FOREIGN KEY(LOTNAME) REFERENCES PARKINGLOT(NAME) ON DELETE CASCADE,
-PRIMARY KEY(SPACEID, LOTNAME));
+delete from parkinglot;
+insert into parkinglot values ('Freedom Lot', '2105 Daniel Allen St, NC 27505');
+insert into parkinglot values ('Premiere Lot', '2108 McKent St, NC 27507');
+insert into parkinglot values ('Justice Lot', '2704 Ben Clark St, NC 26701');
 
 
-CREATE TABLE ZONE(
-ZONEID CHAR(5) PRIMARY KEY, 
-CONSTRAINT ZONES_ID CHECK (ZONEID IN ('A','B','C','D','AS','BS','CS','DS','R','RS','V')) );
+/*Insert values into Zone table*/
 
-CREATE TABLE PARKINGLOT_ZONES(
-    LOTNAME VARCHAR2(20),
-    ZONEID CHAR(5),
-    CONSTRAINT LOT_FK FOREIGN KEY(LOTNAME) REFERENCES PARKINGLOT(NAME), ZONE_FK FOREIGN KEY (ZONEID) REFERENCES ZONE(ZONEID), PRIMARY KEY (LOTNAME, ZONEID)
-)
-
-CREATE TABLE REL_ALLOCATED(
-ZONEID CHAR(5) NOT NULL,
-NAME VARCHAR2(20) NOT NULL,
-CONSTRAINT REL_ALLOCATED_ZONE FOREIGN KEY(ZONEID) REFERENCES ZONE(ZONEID),
-CONSTRAINT REL_ALLOCATED_LOT FOREIGN KEY(NAME) REFERENCES PARKINGLOT(NAME),
-PRIMARY KEY(ZONEID, NAME));
+delete from zone;
+insert into zone values ('A');
+insert into zone values ('B');
+insert into zone values ('C');
+insert into zone values ('D');
+insert into zone values ('AS');
+insert into zone values ('BS');
+insert into zone values ('CS');
+insert into zone values ('DS');
+insert into zone values ('R');
+insert into zone values ('RS');
+insert into zone values ('V');
 
 
-CREATE TABLE NONVISITOR(
-UNIVID VARCHAR2(20) PRIMARY KEY,
-PHONENO NUMBER(10));
+/*Insert values into rel_allocated table*/
 
-CREATE TABLE STUDENT(
-UNIVID VARCHAR2(20) PRIMARY KEY,
-CONSTRAINT STUDENT_NONVISITOR FOREIGN KEY(UNIVID) REFERENCES NONVISITOR(UNIVID) ON DELETE CASCADE);
+delete from rel_allocated;
+insert into rel_allocated values  ('A','Freedom Lot');
+insert into rel_allocated values  ('B','Freedom Lot');
+insert into rel_allocated values  ('C','Freedom Lot');
+insert into rel_allocated values  ('D','Freedom Lot');
+insert into rel_allocated values  ('A','Premiere Lot');
+insert into rel_allocated values  ('B','Premiere Lot');
+insert into rel_allocated values  ('C','Premiere Lot');
+insert into rel_allocated values  ('D','Premiere Lot');
+insert into rel_allocated values  ('AS','Premiere Lot');
+insert into rel_allocated values  ('BS','Premiere Lot');
+insert into rel_allocated values  ('CS','Premiere Lot');
+insert into rel_allocated values  ('DS','Premiere Lot');
+insert into rel_allocated values  ('V','Premiere Lot');
+insert into rel_allocated values  ('AS','Justice Lot');
+insert into rel_allocated values  ('BS','Justice Lot');
+insert into rel_allocated values  ('CS','Justice Lot');
+insert into rel_allocated values  ('DS','Justice Lot');
+insert into rel_allocated values  ('V','Justice Lot');
 
-CREATE TABLE EMPLOYEE(
-UNIVID VARCHAR2(20) PRIMARY KEY,
-ISADMIN NUMBER(1) DEFAULT 0,
-CONSTRAINT EMPLOYEE_NONVISITOR FOREIGN KEY(UNIVID) REFERENCES NONVISITOR(UNIVID) ON DELETE CASCADE);
+/*Insert values into space table*/
+delete from space;
+insert into space(spaceid,lotname,isavailable,isvisitor) values (1,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (2,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (3,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (4,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (5,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (6,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (7,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (8,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (9,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (10,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (11,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (12,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (13,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (14,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (15,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (16,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (17,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (18,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (19,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (20,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (21,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (22,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (23,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (24,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (25,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (26,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (27,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (28,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (29,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (30,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (31,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (32,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (33,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (34,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (35,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (36,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (37,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (38,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (39,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (40,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (41,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (42,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (43,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (44,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (45,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (46,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (47,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (48,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (49,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (50,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (51,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (52,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (53,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (54,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (55,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (56,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (57,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (58,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (59,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (60,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (61,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (62,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (63,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (64,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (65,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (66,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (67,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (68,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (69,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (70,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (71,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (72,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (73,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (74,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (75,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (76,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (77,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (78,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (79,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (80,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (81,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (82,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (83,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (84,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (85,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (86,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (87,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (88,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (89,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (90,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (91,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (92,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (93,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (94,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (95,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (96,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (97,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (98,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (99,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (100,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (101,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (102,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (103,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (104,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (105,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (106,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (107,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (108,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (109,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (110,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (111,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (112,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (113,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (114,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (115,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (116,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (117,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (118,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (119,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (120,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (121,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (122,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (123,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (124,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (125,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (126,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (127,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (128,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (129,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (130,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (131,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (132,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (133,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (134,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (135,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (136,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (137,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (138,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (139,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (140,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (141,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (142,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (143,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (144,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (145,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (146,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (147,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (148,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (149,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (150,'Freedom Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (1,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (2,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (3,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (4,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (5,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (6,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (7,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (8,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (9,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (10,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (11,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (12,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (13,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (14,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (15,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (16,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (17,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (18,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (19,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (20,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (21,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (22,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (23,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (24,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (25,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (26,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (27,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (28,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (29,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (30,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (31,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (32,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (33,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (34,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (35,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (36,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (37,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (38,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (39,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (40,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (41,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (42,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (43,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (44,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (45,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (46,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (47,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (48,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (49,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (50,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (51,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (52,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (53,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (54,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (55,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (56,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (57,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (58,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (59,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (60,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (61,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (62,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (63,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (64,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (65,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (66,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (67,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (68,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (69,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (70,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (71,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (72,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (73,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (74,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (75,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (76,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (77,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (78,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (79,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (80,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (81,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (82,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (83,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (84,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (85,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (86,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (87,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (88,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (89,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (90,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (91,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (92,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (93,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (94,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (95,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (96,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (97,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (98,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (99,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (100,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (101,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (102,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (103,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (104,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (105,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (106,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (107,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (108,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (109,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (110,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (111,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (112,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (113,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (114,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (115,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (116,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (117,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (118,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (119,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (120,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (121,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (122,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (123,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (124,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (125,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (126,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (127,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (128,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (129,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (130,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (131,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (132,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (133,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (134,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (135,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (136,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (137,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (138,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (139,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (140,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (141,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (142,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (143,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (144,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (145,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (146,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (147,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (148,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (149,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (150,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (151,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (152,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (153,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (154,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (155,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (156,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (157,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (158,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (159,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (160,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (161,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (162,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (163,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (164,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (165,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (166,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (167,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (168,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (169,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (170,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (171,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (172,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (173,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (174,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (175,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (176,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (177,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (178,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (179,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (180,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (181,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (182,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (183,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (184,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (185,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (186,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (187,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (188,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (189,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (190,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (191,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (192,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (193,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (194,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (195,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (196,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (197,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (198,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (199,'Premiere Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (199,'Premiere Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (1,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (2,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (3,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (4,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (5,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (6,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (7,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (8,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (9,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (10,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (11,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (12,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (13,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (14,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (15,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (16,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (17,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (18,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (19,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (20,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (21,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (22,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (23,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (24,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (25,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (26,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (27,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (28,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (29,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (30,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (31,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (32,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (33,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (34,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (35,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (36,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (37,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (38,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (39,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (40,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (41,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (42,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (43,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (44,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (45,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (46,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (47,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (48,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (49,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (50,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (51,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (52,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (53,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (54,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (55,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (56,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (57,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (58,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (59,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (60,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (61,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (62,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (63,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (64,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (65,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (66,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (67,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (68,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (69,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (70,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (71,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (72,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (73,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (74,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (75,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (76,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (77,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (78,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (79,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (80,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (81,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (82,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (83,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (84,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (85,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (86,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (87,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (88,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (89,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (90,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (91,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (92,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (93,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (94,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (95,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (96,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (97,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (98,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (99,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (100,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (101,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (102,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (103,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (104,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (105,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (106,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (107,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (108,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (109,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (110,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (111,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (112,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (113,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (114,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (115,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (116,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (117,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (118,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (119,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (120,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (121,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (122,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (123,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (124,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (125,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (126,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (127,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (128,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (129,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (130,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (131,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (132,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (133,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (134,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (135,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (136,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (137,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (138,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (139,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (140,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (141,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (142,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (143,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (144,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (145,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (146,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (147,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (148,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (149,'Justice Lot',1,0);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (150,'Justice Lot',1,0);
+insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values (151,'handicapped','Justice Lot',1,1);
+insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values (152,'handicapped','Justice Lot',1,1);
+insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values (153,'handicapped','Justice Lot',1,1);
+insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values (154,'handicapped','Justice Lot',1,1);
+insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values (155,'handicapped','Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (156,'Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (157,'Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (158,'Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (159,'Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (160,'Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (161,'Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (162,'Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (163,'Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (164,'Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (165,'Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (166,'Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (167,'Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (168,'Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (169,'Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (170,'Justice Lot',1,1);
+insert into space(spaceid,lotname,isavailable,isvisitor) values (171,'Justice Lot',1,1);
+insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values (172,'electric','Justice Lot',1,1);
+insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values (173,'electric','Justice Lot',1,1);
+insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values (174,'electric','Justice Lot',1,1);
+insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values (175,'electric','Justice Lot',1,1);
 
-CREATE TABLE PERMIT(
-PERMITNO VARCHAR2(8) PRIMARY KEY,
-ZONEID CHAR(5) NOT NULL,
-STARTDATE DATE NOT NULL,
-PRIMARYVEHICLENO VARCHAR2(10) NOT NULL,
-SPACETYPE VARCHAR2(12) DEFAULT 'regular' );
-
-CREATE TABLE VISITORPERMIT(
-LOTNAME VARCHAR(20) NOT NULL,
-STARTTIME TIMESTAMP NOT NULL,
-EXPIRETIME TIMESTAMP NOT NULL,
-EXPIREDATE DATE NOT NULL,
-SPACENO VARCHAR(10) NOT NULL,
-PHONENO NUMBER(10) NOT NULL,
-PERMITNO VARCHAR2(8) PRIMARY KEY,
-CONSTRAINT PERMIT_VISITORPERMIT FOREIGN KEY(PERMITNO) REFERENCES PERMIT(PERMITNO) ON DELETE CASCADE);
+/*insert into nonvisitor*/
+delete from nonvisitor;
+insert into nonvisitor (univid, phoneno) values ('1007999','9900544565');
+insert into nonvisitor (univid, phoneno) values ('1006003','9900544566');
+insert into nonvisitor (univid, phoneno) values ('1006020','9900544567');
+insert into nonvisitor (univid, phoneno) values ('1006135','9900544568');
+insert into nonvisitor (univid, phoneno) values ('1006022','9900544569');
 
 
-CREATE TABLE REL_VISITORZONEACCESS(
-PERMITNO VARCHAR2(8) NOT NULL,
-ZONEID CHAR(5) NOT NULL,
-PRIMARY KEY(PERMITNO, ZONEID),
-CONSTRAINT REL_VISITORZONEACCESS_ZONE FOREIGN KEY(ZONEID) REFERENCES ZONE(ZONEID) ON DELETE CASCADE,
-CONSTRAINT REL_VISITORZONEACCESS_PERMIT FOREIGN KEY(PERMITNO) REFERENCES VISITORPERMIT(PERMITNO) ON DELETE CASCADE,
-CONSTRAINT VISITOR_ZONES CHECK (ZONEID = 'V') );
+/*insert into student*/
+delete from student;
+insert into student (univid) values ('1006003');
+insert into student (univid) values ('1006135');
 
 
-CREATE TABLE NONVISITORPERMIT( 
-PERMITNO VARCHAR2(8) PRIMARY KEY, 
-UNIVID VARCHAR2(20) NOT NULL, 
-EXPIRETIME TIMESTAMP NOT NULL, 
-EXPIREDATE DATE NOT NULL,
-CONSTRAINT PERMIT_NONVISITORPERMIT FOREIGN KEY(PERMITNO) REFERENCES PERMIT(PERMITNO) ON DELETE CASCADE, 
-CONSTRAINT NONVISITOR_NONVISITORPERMIT FOREIGN KEY(UNIVID) REFERENCES NONVISITOR(UNIVID) ON DELETE CASCADE);
+/*insert into employee*/
+delete from employee;
+insert into employee (univid,isadmin) values ('1000001',1);
+insert into employee (univid,isadmin) values ('1007999',1);
+insert into employee (univid,isadmin) values ('1006020',0);
+insert into employee (univid,isadmin) values ('1006022',0);
+
+/*Insert into Permit */
+delete from permit;
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20V0001A','V',to_date('8/12/2020','MM/DD/YYYY'),'CDF5731','regular');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20V0012B','V',to_date('8/14/2020','MM/DD/YYYY'),'TRK1093','regular');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20V0015J','V',to_date('8/17/2020','MM/DD/YYYY'),'UGY9123','handicapped');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20V0021L','V',to_date('8/17/2020','MM/DD/YYYY'),'AKL1732','electric');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20V0026P','V',to_date('8/19/2020','MM/DD/YYYY'),'UWA1118','handicapped');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20V0025B','V',to_date('8/21/2020','MM/DD/YYYY'),'TRK1093','regular');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20B0001B','B',to_date('8/10/2020','MM/DD/YYYY'),'VTZ87543','electric');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20CS001C','CS',to_date('8/10/2020','MM/DD/YYYY'),'UGB9020','handicapped');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20D0021D','D',to_date('8/10/2020','MM/DD/YYYY'),'TIR3487','regular');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20AS016S','AS',to_date('8/10/2020','MM/DD/YYYY'),'NEV9889','regular');
+insert into permit(permitno, zoneid, startdate, primaryvehicleno,spacetype) values ('20A0052A','A',to_date('8/10/2020','MM/DD/YYYY'),'KTP2003','regular');
 
 
-CREATE TABLE REL_NONVISITORZONEACCESS(
-PERMITNO VARCHAR2(8) NOT NULL,
-ZONEID CHAR(5) NOT NULL,
-PRIMARY KEY(PERMITNO, ZONEID),
-CONSTRAINT REL_NONVISITORACCESS_ZONE FOREIGN KEY(ZONEID) REFERENCES ZONE(ZONEID) ON DELETE CASCADE,
-CONSTRAINT REL_NONVISITORACCESS_PERMIT FOREIGN KEY(PERMITNO) REFERENCES NONVISITORPERMIT(PERMITNO) ON DELETE CASCADE,
-CONSTRAINT NONVISITOR_ZONES CHECK (ZONEID IN ('A','B','C','D','AS','BS','CS','DS','R','RS')) );
+/*Insert into VISITORPERMIT */
+delete from visitorpermit;
+insert into visitorpermit(permitno, lotname, starttime, expiretime, expiredate, spaceno,phoneno) values('20V0001A','Premiere Lot',to_timestamp('2:00 PM','HH.MI PM'),to_timestamp('4:00 PM','HH.MI PM'),to_date('8/12/2020','MM/DD/YYYY'),200,9900544560);
+insert into visitorpermit(permitno, lotname, starttime, expiretime, expiredate, spaceno,phoneno) values('20V0012B','Justice Lot',to_timestamp( '11:00 AM' ,'HH.MI AM') ,to_timestamp( '2:00 PM','HH.MI PM'),to_date('8/14/2020','MM/DD/YYYY'),160,9900544561);
+insert into visitorpermit(permitno, lotname, starttime, expiretime, expiredate, spaceno,phoneno) values('20V0015J','Justice Lot',to_timestamp( '10:10 AM','HH.MI AM'), to_timestamp( '12:10 PM','HH.MI PM'),to_date('8/17/2020','MM/DD/YYYY'),151,9900544562);
+insert into visitorpermit(permitno, lotname, starttime, expiretime, expiredate, spaceno,phoneno) values('20V0021L','Justice Lot',to_timestamp( '11:45 AM','HH.MI AM'),to_timestamp( '12:45 PM','HH.MI PM'),to_date('8/17/2020','MM/DD/YYYY'),173,9900544563);
+insert into visitorpermit(permitno, lotname, starttime, expiretime, expiredate, spaceno,phoneno) values('20V0026P','Justice Lot',to_timestamp( '2:50 PM' ,'HH.MI PM'),to_timestamp( '4:50 PM','HH.MI PM'),to_date('8/19/2020','MM/DD/YYYY'),153,9900544564);
+insert into visitorpermit(permitno, lotname, starttime, expiretime, expiredate, spaceno,phoneno) values('20V0025B','Premiere Lot',to_timestamp( '9:30 AM','HH.MI AM'),to_timestamp( '1:30 PM','HH.MI PM'),	to_date('9/21/2020','MM/DD/YYYY'),200,9900544565);
+
+/*Insert into REL_VISITORZONEACCESS */
+delete from REL_VISITORZONEACCESS;
+insert into REL_VISITORZONEACCESS(permitno,zoneid) values ('20V0001A','V');
+insert into REL_VISITORZONEACCESS(permitno,zoneid) values ('20V0012B','V');
+insert into REL_VISITORZONEACCESS(permitno,zoneid) values ('20V0015J','V');
+insert into REL_VISITORZONEACCESS(permitno,zoneid) values ('20V0021L','V');
+insert into REL_VISITORZONEACCESS(permitno,zoneid) values ('20V0026P','V');
+insert into REL_VISITORZONEACCESS(permitno,zoneid) values ('20V0025B','V');
 
 
-CREATE TABLE VEHICLE(
-LICENSEPLATE VARCHAR2(10) PRIMARY KEY,
-MANUFACTURER VARCHAR2(20),
-MODEL VARCHAR2(20),
-YEAR NUMBER(4),
-COLOR VARCHAR2(15),
-PERMITNO VARCHAR2(8) NOT NULL,
-CONSTRAINT FK_VEHICLE_PERMIT FOREIGN KEY(PERMITNO) REFERENCES PERMIT(PERMITNO) ON DELETE CASCADE);
+
+/*Insert into NONVISITORPERMIT */
+delete from nonvisitorpermit;
+insert into nonvisitorpermit(univid, permitno, expiretime, expiredate) values ('1007999','20B0001B',to_date('8/9/2021','MM/DD/YYYY'),to_timestamp('11:59 PM','HH.MI PM'));
+insert into nonvisitorpermit(univid, permitno, expiretime, expiredate) values ('1006003','20CS001C',to_date('12/14/2020','MM/DD/YYYY'),to_timestamp('11:59 PM','HH.MI PM'));
+insert into nonvisitorpermit(univid, permitno, expiretime, expiredate) values ('1006020','20D0021D',to_date('7/9/2021','MM/DD/YYYY'),to_timestamp('11:59 PM','HH.MI PM'));
+insert into nonvisitorpermit(univid, permitno, expiretime, expiredate) values ('1006135','20AS016S',to_date('12/31/2020','MM/DD/YYYY'),to_timestamp('11:59 PM','HH.MI PM'));
+insert into nonvisitorpermit(univid, permitno, expiretime, expiredate) values ('1006022','20A0052A',to_date('7/28/2021','MM/DD/YYYY'),to_timestamp('11:59 PM','HH.MI PM'));
+
+/* Insert into REL_NONVISITORZONEACCESS*/
+delete from REL_NONVISITORZONEACCESS;
+insert into REL_NONVISITORZONEACCESS(permitno,zoneid) values ('20B0001B','B');
+insert into REL_NONVISITORZONEACCESS(permitno,zoneid) values ('20CS001C','CS');
+insert into REL_NONVISITORZONEACCESS(permitno,zoneid) values ('20D0021D','D');
+insert into REL_NONVISITORZONEACCESS(permitno,zoneid) values ('20AS016S','AS');
+insert into REL_NONVISITORZONEACCESS(permitno,zoneid) values ('20A0052A','A');
+
+/*insert into vehicle*/
+delete from vehicle;
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('CDF5731','Toyota','Camry',2018,'Red','20V0001A');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('AKL1732','Tesla','Model X',2019,'Silver','20V0021L');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('UGY9123','Nissan','Maxima',2015,'Black','20V0015J');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('TRK1093','Kia','Rio',2017,'Blue','20V0012B');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('UWA1118','Audi','Q3',2016,'White','20V0026P');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('UGB9020','Chevrolet','Cruze',2014,'Silver','20CS001C');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('VTZ87543','Nissan','LEAF',2018,'Black','20B0001B');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('TIR3487','BMW','X5',2017,'White','20D0021D');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('RPU1824','Honda','Odyssey',2016,'Blue','20D0021D');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('NEV9889','Hyundai','Elantra',2011,'Red','20AS016S');
+insert into vehicle(licenseplate,manufacturer,model,year,color,permitno) values ('KTP2003','Acura','RDX',2009,'Black','20A0052A');
 
 
-CREATE TABLE ASSIGNMULTIPLE(
-UNIVID VARCHAR2(20) NOT NULL,
-PERMITNO VARCHAR(8) NOT NULL,
-VEHICLENO VARCHAR2(20) PRIMARY KEY,
-CONSTRAINT FK_VEHICLE_ASSIGNMULTIPLE FOREIGN KEY(VEHICLENO) REFERENCES VEHICLE(LICENSEPLATE) ON DELETE CASCADE,
-CONSTRAINT FK_NONVISITOR_ASSIGNMULTIPLE FOREIGN KEY(PERMITNO) REFERENCES NONVISITORPERMIT(PERMITNO) ON DELETE CASCADE, 
-CONSTRAINT FK_EMPLOYEE_ASSIGNMULTIPLE FOREIGN KEY(UNIVID) REFERENCES EMPLOYEE(UNIVID) ON DELETE CASCADE);
+/*Insert into ASSIGNSINGLE*/
+delete from assignsingle;
+insert into assignsingle(univid,permitno,vehicleno) values ('1006003','20CS001C','UGB9020');
+insert into assignsingle(univid,permitno,vehicleno) values ('1006135','20AS016S','NEV9889');
 
 
-CREATE TABLE CITATION(
-CITATIONNO NUMBER(10) PRIMARY KEY,
-CARLICENSENO VARCHAR2(10) NOT NULL,
-MODEL VARCHAR2(20),
-COLOR VARCHAR2(15),
-ISSUEDATE DATE,
-STATUS VARCHAR2(10) DEFAULT 'unpaid',
-TYPE VARCHAR(10) NOT NULL,
-LOT VARCHAR(20) NOT NULL,
-ISSUETIME TIMESTAMP NOT NULL,
-VIOLATIONCATEGORY VARCHAR2(10) NOT NULL,
-PAYMENTDUE DATE NOT NULL,
-VIOLATIONFEE NUMBER(2) NOT NULL,
-CONSTRAINT CITATION_CATEGORY CHECK ( VIOLATIONCATEGORY IN ('Invalid Permit','Expired Permit', 'No Permit')),
-CONSTRAINT CITATION_VIOLATIONFEE CHECK ( VIOLATIONFEE IN (20,25,30)) );
+/*Insert into  ASSIGNMULTIPLE*/
+delete from assignmultiple;
+insert into assignmultiple(univid,permitno,vehicleno) values ('1007999','20B0001B','VTZ87543');
+insert into assignmultiple(univid,permitno,vehicleno) values ('1006020','20D0021D','TIR3487');
+insert into assignmultiple(univid,permitno,vehicleno) values ('1006020','20D0021D','RPU1824');
+insert into assignmultiple(univid,permitno,vehicleno) values ('1006022','20A0052A','KTP2003');
 
-CREATE TABLE NOTIFICATIONVISITOR(
-PHONENO NUMBER(10) NOT NULL,
-CITATIONNO NUMBER(10) NOT NULL,
-PRIMARY KEY (PHONENO, CITATIONNO),
-CONSTRAINT FK_CITATION_NOTIFVISITOR FOREIGN KEY(CITATIONNO) REFERENCES CITATION(CITATIONNO));
+/*Insert into citation*/
+insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10001,'TRK1093','Rio','Blue',to_date('8/14/2020','MM/DD/YYYY'),'Paid','visitor','Justice Lot',to_timestamp('2:40 PM','HH.MI PM'),'Expired Permit',to_date('9/13/2020','MM/DD/YYYY'),25);
+insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10002,'UGY9123','Maxima','Black',to_date('8/17/2020','MM/DD/YYYY'),'Unpaid','visitor','Justice Lot',to_timestamp('12:55 PM','HH.MI PM'),'Expired Permit',to_date('9/16/2020','MM/DD/YYYY'),25);
+insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10003,'AKL1732','ModelX','Silver',to_date('8/17/2020','MM/DD/YYYY'),'Unpaid','visitor','Justice Lot',to_timestamp('1:00 PM','HH.MI PM'),'Expired Permit',to_date('9/16/2020','MM/DD/YYYY'),25);
+insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10004,'NEV9889','Elantra','Red',to_date('9/10/2020','MM/DD/YYYY'),'Unpaid','nonvisitor','Justice Lot',to_timestamp('3:50 PM','HH.MI PM'),'Invalid Permit',to_date('10/9/2020','MM/DD/YYYY'),20);
+insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10005,'PTL5642','Sentra','Black',to_date('9/14/2020','MM/DD/YYYY'),'Paid','nonvisitor','Freedom Lot',to_timestamp('10:05 AM','HH.MI AM'),'No Permit',to_date('10/13/2020','MM/DD/YYYY'),40);
+insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10006,'TRK1093','Rio','Blue',to_date('9/21/2020','MM/DD/YYYY'),'Unpaid','visitor','Premiere Lot',to_timestamp('2:00 PM','HH.MI PM'),'Expired Permit',to_date('10/20/2020','MM/DD/YYYY'),25);
 
-CREATE TABLE NOTIFICATIONNONVISITOR(
-UNIVID VARCHAR2(20) NOT NULL,
-CITATIONNO NUMBER(10) NOT NULL,
-PRIMARY KEY (UNIVID, CITATIONNO),
-CONSTRAINT FK_CITATION_NOTIFNONVISITOR FOREIGN KEY(CITATIONNO) REFERENCES CITATION(CITATIONNO));
+/*Insert into NOTIFICATIONVISITOR*/
 
-ALTER TABLE SPACE
-ADD( ISAVAILABLE NUMBER(1) DEFAULT 1,
-ISVISITOR NUMBER(1) DEFAULT 0);
+insert into notificationvisitor(phoneno, citationno) values (9900544565,10001);
+insert into notificationvisitor(phoneno, citationno) values (9900544562,10002);
+insert into notificationvisitor(phoneno, citationno) values (9900544563,10003);
+insert into notificationvisitor(phoneno, citationno) values (9900544565,10006);
 
-ALTER TABLE ASSIGNMULTIPLE
-ADD (SPACENO VARCHAR(10),
-LOTNAME VARCHAR(20));
+/*Insert into NOTIFICATIONNONVISITOR*/
 
-CREATE TABLE ASSIGNSINGLE(
-UNIVID VARCHAR2(20) NOT NULL,
-PERMITNO VARCHAR(8) NOT NULL,
-VEHICLENO VARCHAR2(20) PRIMARY KEY,
-SPACENO VARCHAR(10),
-LOTNAME VARCHAR(20),
-CONSTRAINT FK_VEHICLE_ASSIGNSINGLE FOREIGN KEY(VEHICLENO) REFERENCES VEHICLE(LICENSEPLATE) ON DELETE CASCADE,
-CONSTRAINT FK_NONVISITOR_ASSIGNSINGLE FOREIGN KEY(PERMITNO) REFERENCES NONVISITORPERMIT(PERMITNO) ON DELETE CASCADE, 
-CONSTRAINT FK_STUDENT_ASSIGNSINGLE FOREIGN KEY(UNIVID) REFERENCES STUDENT(UNIVID) ON DELETE CASCADE);
-
-ALTER TABLE VISITORPERMIT 
-MODIFY PHONENO VARCHAR2(10);
-
-ALTER TABLE ASSIGNMULTIPLE 
-ADD PARKEDAT TIMESTAMP;
-
-ALTER TABLE ASSIGNSINGLE 
-ADD PARKEDAT TIMESTAMP;
-
-ALTER TABLE ASSIGNMULTIPLE 
-MODIFY (PERMITNO VARCHAR2(8), SPACENO VARCHAR2(10), LOTNAME VARCHAR2(20));
-
-ALTER TABLE ASSIGNSINGLE 
-MODIFY (PERMITNO VARCHAR2(8), SPACENO VARCHAR2(10), LOTNAME VARCHAR2(20));
-
-ALTER TABLE CITATION
-DROP CONSTRAINT CITATION_VIOLATIONFEE;
-
-ALTER TABLE CITATION
-MODIFY VIOLATIONCATEGORY VARCHAR2(30);
-
+insert into notificationnonvisitor insert into notificationvisitor(phoneno, citationno) values (9900544568,10004);
+insert into notificationnonvisitor insert into notificationvisitor(phoneno, citationno) values (9900544566,10005);
