@@ -37,7 +37,7 @@ public class Vis_Exit_Lot {
 
 
         /* Check if the visitor has permit, If not then issue NO permit Citation*/
-        String sql = "Select * from VISITORPERMIT where PHONENO = \'" + Ph_num + "\' AND STARTTIME = (SELECT MAX(STARTTIME) FROM VISITORPERMIT where PHONENO = \'" + Ph_num + "\')";
+        String sql = "Select LOTNAME, EXPIRETIME, SPACENO, PERMITNO from VISITORPERMIT where PHONENO = \'" + Ph_num + "\' AND STARTTIME = (SELECT MAX(STARTTIME) FROM VISITORPERMIT where PHONENO = \'" + Ph_num + "\')";
         rs = st.executeQuery(sql); 
 
         if(!rs.next()){
@@ -53,7 +53,7 @@ public class Vis_Exit_Lot {
         System.out.println(Lot+Expire_time+Space_no+Permit_no);    
         try{
             /* disable the auto commit*/
-            conn.setAutoCommit(false);
+            //conn.setAutoCommit(false);
             /* Seting the transaction Managment variables to capture the failure*/
             boolean trans1 = false,trans2 = false,trans3 = false;
         
@@ -61,8 +61,17 @@ public class Vis_Exit_Lot {
                 //Update SPACE table and make it unavailable.
                 sql = "UPDATE SPACE SET ISAVAILABLE = 1 WHERE LOTNAME = \'" + Lot + "\' AND SPACEID = \'" + Space_no + "\' AND ISVISITOR = 1";
                 rs = st.executeQuery(sql);
-                trans1 = true;
-                System.out.println("Parking space made available");
+
+                if (rs != null) {
+                    System.out.println("Parking space made available");
+                    trans1 = true;
+                }
+                else{
+                    System.out.println("Parking space not deallocated");
+                    trans1 = false;
+                }
+
+            
             }
             catch (SQLException e){
                 System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
@@ -86,8 +95,16 @@ public class Vis_Exit_Lot {
                 //System.out.println(Lot+Expire_time+Space_no+Permit_no);    
                 sql = "DELETE FROM VEHICLE WHERE LICENSEPLATE = \'" + Lic_plate + "\'";
                 rs = st.executeQuery(sql);
-                System.out.println("Deleted details from vehicles table");
-                trans2 = true;
+
+                if (rs != null) {
+                    System.out.println("Deleted details from vehicles table");
+                    trans2 = true;
+                }
+                else{
+                    System.out.println("Delete failed");
+                    trans2 = false;
+                }
+                
             }
             catch (SQLException e){
                 System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
@@ -109,14 +126,14 @@ public class Vis_Exit_Lot {
             System.out.println(exitTime + " " + Expire_time + " " + res);
 
             //Call citation function
-            /*
+            
             if (res>0){
-                IssueCitation.issuecitation(conn, Ph_num, Lic_plate, Lot_name, model, color, "Expired Permit", 25, "Visitor");
+                IssueCitation.issuecitation(conn, Ph_num, Lic_plate, Lot, model, color, "Expired Permit", 25, "Visitor");
             }
-            */
+            
             /* Transaction management check*/
-            if (trans1 && trans2 && trans3){
-                conn.commit();
+            if (trans1 && trans2){
+                //conn.commit();
                 System.out.println("Transaction Successful!");
             }
             else{
@@ -129,7 +146,7 @@ public class Vis_Exit_Lot {
         catch (SQLException e){
             System.out.println("Caught SQL Exception!" + e.getErrorCode() + "/" + e.getSQLState() + " " + e.getMessage());
             e.printStackTrace();
-            conn.rollback();
+            //conn.rollback();
             return;
         }
 
