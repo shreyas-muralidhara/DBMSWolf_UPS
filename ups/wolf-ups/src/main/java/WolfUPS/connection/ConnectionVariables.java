@@ -6,9 +6,9 @@ public class ConnectionVariables {
         return "jdbc:oracle:thin:@orca.csc.ncsu.edu:1521:orcl01";
     }    
     public static String getUser(){
-        return "schikkb";
+        return "sray9";
     } 
     public static String getPassword(){
-        return "200314024";
+        return "abcd1234";
     }
 }
