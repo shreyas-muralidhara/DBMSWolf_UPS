@@ -23,7 +23,7 @@ public class PayCitation {
         String sql = "SELECT * FROM CITATION WHERE CITATIONNO = " + citation_num;
         
         rs = st.executeQuery(sql);
-        if (rs != null) {
+        if (rs.isBeforeFirst()) {
             while (rs.next()) {
                 Integer s = rs.getInt("VIOLATIONFEE");
                 String n = rs.getString("STATUS");

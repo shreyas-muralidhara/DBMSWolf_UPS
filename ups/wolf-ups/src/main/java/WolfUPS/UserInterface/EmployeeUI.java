@@ -55,7 +55,6 @@ public class EmployeeUI {
                     break;
                 case "5":
                     PayCitation.paycitation(reader,conn);
-                    System.out.println("Pay Citations");
                     break;
                 default:
                     return ;
