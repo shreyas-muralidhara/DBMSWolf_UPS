@@ -64,7 +64,7 @@ public class DemoQueries {
                     break;
 
                 case "2":
-                    sql = "Select NV.UNIVID, NV.PERMITNO, P.STARTDATE, NV.EXPIRETIME, P.ZONEID, P.PRIMARYVEHICLENO, P.SPACETYPE, V.LICENSEPLATE from NONVISITORPERMIT NV, PERMIT P, VEHICLE V WHERE NV.PERMITNO=P.PERMITNO AND P.PERMITNO = V.PERMITNO AND NV.UNIVID = \'EM004\'";
+                    sql = "Select NV.UNIVID, NV.PERMITNO, P.STARTDATE, NV.EXPIRETIME, P.ZONEID, P.PRIMARYVEHICLENO, P.SPACETYPE, V.LICENSEPLATE from NONVISITORPERMIT NV, PERMIT P, VEHICLE V WHERE NV.PERMITNO=P.PERMITNO AND P.PERMITNO = V.PERMITNO AND NV.UNIVID = \'1006020\'";
                     rs = st.executeQuery(sql);
                     if (!rs.isBeforeFirst()) {
                         System.out.println("Query returns no rows!");
@@ -78,7 +78,7 @@ public class DemoQueries {
                     break;
 
                 case "3":
-                    sql = "Select NV.UNIVID, V.LICENSEPLATE, V.MANUFACTURER, V.MODEL, V.YEAR, V.COLOR, V.PERMITNO from NONVISITORPERMIT NV, VEHICLE V WHERE NV.PERMITNO=V.PERMITNO AND NV.UNIVID = \'EM004\'";
+                    sql = "Select NV.UNIVID, V.LICENSEPLATE, V.MANUFACTURER, V.MODEL, V.YEAR, V.COLOR, V.PERMITNO from NONVISITORPERMIT NV, VEHICLE V WHERE NV.PERMITNO=V.PERMITNO AND NV.UNIVID = \'1006003\'";
                     rs = st.executeQuery(sql);
                     if (!rs.isBeforeFirst()) {
                         System.out.println("Query returns no rows!");
@@ -101,7 +101,7 @@ public class DemoQueries {
 
                     System.out.println("Univid	License_Plate  Manufacturer Model     Year     Color     Permit_num");
                     while (rs.next()) {
-                        System.out.println(rs.getString("SPC_ID") + " space is available");
+                        System.out.println(rs.getString("SPC_ID") + " spaceid is available");
                     }
                     break;
                     
