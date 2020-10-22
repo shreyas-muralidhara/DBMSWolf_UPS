@@ -15,6 +15,7 @@ Team Members:
 ### Database setup
 * Run the sql commands in the file "DBMSWolf_UPS/ups/wolf-ups/sql/database_setup.sql" to set up all the tables and constraints.
 * Insert sample data using the sql commands in the file "DBMSWolf_UPS/ups/wolf-ups/sql/sampleData.sql".
+* We have set up the db with the credentials of "sray9". The configuration details can be found in DBMSWolf_UPS/ups/src/main/java/WolfUPS/connection/ConnectionVariables.java. Any changes in credentials can be done in this file.
 
 ### Instructions to run the code
 * Open the project folder "DBMSWolf_UPS/ups/wolf-ups" in visual studio code.
