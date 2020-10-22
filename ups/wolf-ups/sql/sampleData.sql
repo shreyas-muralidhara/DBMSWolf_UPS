@@ -20,7 +20,7 @@ insert into zone values ('DS');
 insert into zone values ('R');
 insert into zone values ('RS');
 insert into zone values ('V');
-
+commit;
 
 /*Insert values into rel_allocated table*/
 
@@ -572,6 +572,7 @@ insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values (172,'
 insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values (173,'electric','Justice Lot',1,1);
 insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values (174,'electric','Justice Lot',1,1);
 insert into space(spaceid,spacetype,lotname,isavailable,isvisitor) values (175,'electric','Justice Lot',1,1);
+commit;
 
 /*insert into nonvisitor*/
 delete from nonvisitor;
@@ -676,12 +677,12 @@ insert into assignmultiple(univid,permitno,vehicleno) values ('1006022','20A0052
 
 /*Insert into citation*/
 delete from citation;
-insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10001,'TRK1093','Rio','Blue',to_date('8/14/2020','MM/DD/YYYY'),'Paid','visitor','Justice Lot',to_timestamp('2:40 PM','HH.MI PM'),'Expired Permit',to_date('9/13/2020','MM/DD/YYYY'),25);
-insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10002,'UGY9123','Maxima','Black',to_date('8/17/2020','MM/DD/YYYY'),'Unpaid','visitor','Justice Lot',to_timestamp('12:55 PM','HH.MI PM'),'Expired Permit',to_date('9/16/2020','MM/DD/YYYY'),25);
-insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10003,'AKL1732','ModelX','Silver',to_date('8/17/2020','MM/DD/YYYY'),'Unpaid','visitor','Justice Lot',to_timestamp('1:00 PM','HH.MI PM'),'Expired Permit',to_date('9/16/2020','MM/DD/YYYY'),25);
-insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10004,'NEV9889','Elantra','Red',to_date('9/10/2020','MM/DD/YYYY'),'Unpaid','nonvisitor','Justice Lot',to_timestamp('3:50 PM','HH.MI PM'),'Invalid Permit',to_date('10/9/2020','MM/DD/YYYY'),20);
-insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10005,'PTL5642','Sentra','Black',to_date('9/14/2020','MM/DD/YYYY'),'Paid','nonvisitor','Freedom Lot',to_timestamp('10:05 AM','HH.MI AM'),'No Permit',to_date('10/13/2020','MM/DD/YYYY'),40);
-insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10006,'TRK1093','Rio','Blue',to_date('9/21/2020','MM/DD/YYYY'),'Unpaid','visitor','Premiere Lot',to_timestamp('2:00 PM','HH.MI PM'),'Expired Permit',to_date('10/20/2020','MM/DD/YYYY'),25);
+insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10001,'TRK1093','Rio','Blue',to_date('8/14/2020','MM/DD/YYYY'),'Paid','Visitor','Justice Lot',to_timestamp('2:40 PM','HH.MI PM'),'Expired Permit',to_date('9/13/2020','MM/DD/YYYY'),25);
+insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10002,'UGY9123','Maxima','Black',to_date('8/17/2020','MM/DD/YYYY'),'Unpaid','Visitor','Justice Lot',to_timestamp('12:55 PM','HH.MI PM'),'Expired Permit',to_date('9/16/2020','MM/DD/YYYY'),25);
+insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10003,'AKL1732','ModelX','Silver',to_date('8/17/2020','MM/DD/YYYY'),'Unpaid','Visitor','Justice Lot',to_timestamp('1:00 PM','HH.MI PM'),'Expired Permit',to_date('9/16/2020','MM/DD/YYYY'),25);
+insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10004,'NEV9889','Elantra','Red',to_date('9/10/2020','MM/DD/YYYY'),'Unpaid','Student','Justice Lot',to_timestamp('3:50 PM','HH.MI PM'),'Invalid Permit',to_date('10/9/2020','MM/DD/YYYY'),20);
+insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10005,'PTL5642','Sentra','Black',to_date('9/14/2020','MM/DD/YYYY'),'Paid','Employee','Freedom Lot',to_timestamp('10:05 AM','HH.MI AM'),'No Permit',to_date('10/13/2020','MM/DD/YYYY'),40);
+insert into citation (citationno,carlicenseno,model,color,issuedate,status,type,lot,issuetime,violationcategory,paymentdue,violationfee) values (10006,'TRK1093','Rio','Blue',to_date('9/21/2020','MM/DD/YYYY'),'Unpaid','Visitor','Premiere Lot',to_timestamp('2:00 PM','HH.MI PM'),'Expired Permit',to_date('10/20/2020','MM/DD/YYYY'),25);
 
 /*Insert into NOTIFICATIONVISITOR*/
 delete from notificationvisitor;
@@ -694,3 +695,4 @@ insert into notificationvisitor(phoneno, citationno) values (9900544565,10006);
 delete from notificationnonvisitor;
 insert into notificationnonvisitor(univid, citationno) values ('1006135',10004);
 insert into notificationnonvisitor(univid, citationno) values ('1006022',10005);
+commit;

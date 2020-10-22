@@ -50,7 +50,6 @@ public class App
                         break;
                     case "5":
                         DemoQueries.demoqueries(reader);
-                        System.out.println("List of demo queries");
                         break;
                     default:
                         System.exit(0);
